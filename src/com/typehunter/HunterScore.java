@@ -1,12 +1,14 @@
 package com.typehunter;
 
-class HunterScore {
+public class HunterScore {
     private int errors;
     private long elapsedTime;
 
+
+
     public HunterScore(int errors, long elapsedTime){
-        this.errors = errors;
-        this.elapsedTime = elapsedTime;
+        setErrors(errors);
+
 
     }
 
@@ -15,8 +17,8 @@ class HunterScore {
 
     }
 
-    public long getElapsedTime(){
-        return elapsedTime;
-    }
+    public void setErrors(int errors) {
+        this.errors = errors;
 
+    }
 }
