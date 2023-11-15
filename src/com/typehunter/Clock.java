@@ -10,7 +10,7 @@ public class Clock {
     private LocalDateTime endTime;
     private long elapsedTime;
 
-//Clock object might only be needed if we make a duration each round should last? ie. 30sec total?
+    //Clock object might only be needed if we make a duration each round should last? ie. 30sec total?
     public void Clock() {
         Clock clock = new Clock();
 
@@ -28,9 +28,13 @@ public class Clock {
     }
 
     //Calculates the difference in seconds between the startTimer() and endTime()
-    public void calculateTime(){
-       long elapsedTime = Duration.between(startTime, endTime).getSeconds();
-        System.out.println("Elapsed time: " + elapsedTime);
+    public void setElapsedTime(){
+         elapsedTime = Duration.between(startTime, endTime).getSeconds();
+
+
+    }
+    public long getElapsedTime(){
+        return elapsedTime;
 
     }
 }
