@@ -7,17 +7,16 @@ import java.util.*;
 
 public class LeaderBoard implements Comparable<HunterScore>, Serializable {
     private String name;
+    private static final String dataFilePath = "leaderboard/leaderboard.dat";
+    //private HashMap<String, HunterScore> hunterScores;
+    private final Map<String, HunterScore> scoreMap = new HashMap<>();
     private HunterScore score;
-    // create map of String(huntername) and HunterScore(int and long)
-    public HunterScore scores1 = new HunterScore(5, 20L);
-    public HunterScore scores2 = new HunterScore(6, 20L);
-
 
 
     public static LeaderBoard getInstance() {
         LeaderBoard board = null;
-        if (Files.exists(Path.of(ADD FILE PATH))) {
-            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(ADD FILE PATH))) {
+        if (Files.exists(Path.of(dataFilePath))) {
+            try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFilePath))) {
                 board = (LeaderBoard) in.readObject();
 
             } catch (Exception e) {
@@ -28,22 +27,30 @@ public class LeaderBoard implements Comparable<HunterScore>, Serializable {
         }
         return board;
     }
+    // create map of String(huntername) and HunterScore(int and long)
 
-    private final Map<String , HunterScore> scoreMap = new HashMap<>();
 
     private LeaderBoard() {
 
     }
 
+    public void addScore(String name, HunterScore score) {
+        scoreMap.put(name, score);
+    }
+
     public void save() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ADD FILE PATH))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
             out.writeObject(this);
         } catch (Exception e) {
 
         }
     }
 
-    public void show() {
+    public void displayLeaderBoard() {
+        for (String name : scoreMap.keySet()) {
+            HunterScore hunterScore = scoreMap.get(name);
+            System.out.println(name + ": " + score);
+        }
 
     }
 
