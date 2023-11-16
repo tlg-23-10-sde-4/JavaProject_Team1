@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 public class HunterScore implements  Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int errors;
-    private long elapsedTime;
+    private int errors = 0;
+    private long elapsedTime = 15L;
 
 
     public HunterScore() {
@@ -20,12 +20,6 @@ public class HunterScore implements  Serializable {
         setElapsedTime(elapsedTime);
 
     }
-
-    //Clock object might only be needed if we make a duration each round should last? ie. 30sec total?
-//    public void Clock() {
-//        Clock clock = new Clock();
-//
-//    }
 
     //Starts timer when round starts and grabs and stores current time
     public void startTimer() {
