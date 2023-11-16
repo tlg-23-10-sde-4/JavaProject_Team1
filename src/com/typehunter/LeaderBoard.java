@@ -1,9 +1,10 @@
 package com.typehunter;
 
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LeaderBoard implements Comparable<HunterScore>, Serializable {
     private String name;
@@ -19,10 +20,12 @@ public class LeaderBoard implements Comparable<HunterScore>, Serializable {
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFilePath))) {
                 board = (LeaderBoard) in.readObject();
 
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             board = new LeaderBoard();
         }
         return board;
@@ -41,7 +44,8 @@ public class LeaderBoard implements Comparable<HunterScore>, Serializable {
     public void save() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
             out.writeObject(this);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
 
         }
     }

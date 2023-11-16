@@ -67,10 +67,10 @@ public class Animal<Word> {
                 animalWords.remove(deleteIndex);
             }
         }
-        return animalWords.toArray(new String[0]);
+        return wordCount;
     }
 
-    public String[] getWords() {
+    public void getWords() {
         List<String> words = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
             String line;
