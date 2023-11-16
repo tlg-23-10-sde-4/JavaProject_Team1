@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Animal<Word> {
-    private String name;
-    private String image;   // pulls from file/path
-    private String sound;   // pulls from file/path
-    private int size;
+    private final String name;
+    private final String image;   // pulls from file/path
+    private final String sound;   // pulls from file/path
+    private final int size;
     private int[] wordCount;
-    private List<String> words = new ArrayList<>();
+    private final List<String> words = new ArrayList<>();
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
 
@@ -22,7 +22,7 @@ public class Animal<Word> {
         Hit hit = calculateHit();
     }
 
-    private Animal (String name, String image, String sound, int size) {
+    public Animal(String name, String image, String sound, int size) {
         this.name = name;
         this.image = image;
         this.sound = sound;
@@ -71,7 +71,7 @@ public class Animal<Word> {
         return wordCount;
     }
 
-    public String[] getWords() {
+    public void getWords() {
         List<String> words = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
             String line;
@@ -84,7 +84,6 @@ public class Animal<Word> {
         String[] wordsArray = new String[words.size()];
         wordsArray = words.toArray(wordsArray);
 
-        return wordsArray;
     }
 
     private Hit calculateHit() {

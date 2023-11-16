@@ -71,6 +71,9 @@ class Application {
 
     private void game() {
     }
+    public void playRound(){
+        //9 rounds, 3 per location
+    }
 
     private void save() {
     }
