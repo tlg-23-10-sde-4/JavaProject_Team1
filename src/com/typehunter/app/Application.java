@@ -1,13 +1,21 @@
 package com.typehunter.app;
+package com.typehunter;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import com.typehunter.Animal;
 
 import javax.swing.*;
 import java.util.Locale;
 import java.util.Scanner;
 
-class Application {
+public class Application {
+    //private
+    Application typeHunterGame = new Application();
+    private Animal animal;
+    private Location location;
+
+
     //fields
     String rules = " How to play:\n" +
             "            - To be a master Type Hunter, the player must complete all three levels.\n" +
@@ -36,7 +44,7 @@ class Application {
         System.out.println();
         System.out.println("=============================================");
         //TO DO: insert hunter type image below
-        ImageIcon typeHunter = new ImageIcon("images/typeHunter");
+        ImageIcon typeHunter = new ImageIcon("images/hunter.png");
         System.out.println(typeHunter);
         Console.clear();
     }
@@ -60,10 +68,13 @@ class Application {
 
     private void load() {
         //TODO: load word bank
+        typeHunterGame.animal.getWords();
 
         //TODO: create animals
+        typeHunterGame.location.initializeAnimal();
 
         //TODO: place animal in "location"
+
     }
 
     private void start() {
@@ -73,6 +84,7 @@ class Application {
     }
     public void playRound(){
         //9 rounds, 3 per location
+
     }
 
     private void save() {

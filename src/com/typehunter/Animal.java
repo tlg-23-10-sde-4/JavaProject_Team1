@@ -14,10 +14,13 @@ public class Animal<Word> {
     private final List<String> words = new ArrayList<>();
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
+    private Object Hit;
 
     public void execute() {
         Hit hit = calculateHit();
     }
+//    public Animal() {
+//}
 
     public Animal(String name, String image, String sound, int size) {
         this.name = name;
@@ -92,10 +95,11 @@ public class Animal<Word> {
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.matches(String.valueOf(words))) {
                 validInput = true;
-                Hit = null;
+            hit = null; // note: hit will always be null even when not true
 
             }
         }
+        return hit;
     }
 
     @Override
