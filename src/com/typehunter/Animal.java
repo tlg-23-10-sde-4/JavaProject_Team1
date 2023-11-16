@@ -21,7 +21,7 @@ public class Animal<Word> {
         Hit hit = calculateHit();
     }
 
-    public Animal(String name, String image, String sound, int size) {
+    private Animal(String name, String image, String sound, int size) {
         this.name = name;
         this.image = image;
         this.sound = sound;
@@ -52,7 +52,7 @@ public class Animal<Word> {
         return size;
     }
 
-    public String[] getWordCount() {
+    public String getWordCount() {
         getWords();
         List<String> animalWords = List.of(new String[wordsArray.length]); // needs to be given from Location enum
         int index = 0;
@@ -70,7 +70,7 @@ public class Animal<Word> {
         return wordCount;
     }
 
-    public void getWords() {
+    public String[] getWords() {
         List<String> words = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
             String line;
