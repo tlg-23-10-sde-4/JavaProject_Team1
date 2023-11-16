@@ -10,17 +10,16 @@ public class Animal<Word> {
     private final String image;   // pulls from file/path
     private final String sound;   // pulls from file/path
     private final int size;
-    private int[] wordCount;
-    private final List<String> words = new ArrayList<>();
+    private String wordCount;
+    //private final List<String> words = new ArrayList<>();
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
-    private Object Hit;
+    private Hit hit;
+    //C:\StudentWork\MiniProject\animal_resources
 
     public void execute() {
         Hit hit = calculateHit();
     }
-//    public Animal() {
-//}
 
     public Animal(String name, String image, String sound, int size) {
         this.name = name;
@@ -53,9 +52,9 @@ public class Animal<Word> {
         return size;
     }
 
-    public int[] getWordCount() {
+    public String[] getWordCount() {
         getWords();
-        List<String> animalWords = List.of(new String[words.size()]); // needs to be given from Location enum
+        List<String> animalWords = List.of(new String[wordsArray.length]); // needs to be given from Location enum
         int index = 0;
         for (String word : wordsArray) {
             animalWords.set(index, word);
@@ -63,7 +62,7 @@ public class Animal<Word> {
         }
         for (String word : wordsArray) {
             System.out.println(word);
-            int deleteIndex = words.size();
+            int deleteIndex = wordsArray.length;
             if (deleteIndex >= 0 && deleteIndex < animalWords.size()) {
                 animalWords.remove(deleteIndex);
             }
@@ -81,33 +80,28 @@ public class Animal<Word> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] wordsArray = new String[words.size()];
+        String[] wordsArray = new String[0];
         Collections.shuffle(words);
         wordsArray = words.toArray(wordsArray);
-
+        return wordsArray;
     }
 
-    private Hit calculateHit() {
-        Hit hit = null;
+    private String calculateHit() {
+        int wordIndex = 0;
+        int givenIndex = locationIndex;
+        wordCount = wordsArray[wordIndex];
         boolean validInput = false;
         while (!validInput) {
-            System.out.println(words);
+            System.out.println(wordCount);
             String input = scanner.nextLine().trim().toLowerCase();
-            if (input.matches(String.valueOf(words))) {
+            if (input.matches(String.valueOf(wordCount))) {
+                validInput = false;
+                wordIndex++;
+            }
+            if (wordIndex >= givenIndex) {
                 validInput = true;
-            hit = null; // note: hit will always be null even when not true
-
             }
         }
-        return hit;
-    }
-
-    @Override
-    public String toString() {
-        return "Animal{" + "name='" + name + '\'' + ", image='" + image + '\'' +", sound='" + sound + '\'' +
-                ", size=" + size + ", wordCount=" + Arrays.toString(wordCount) + ", words=" + words + '}';
-    }
-
-    private class Hit {
+        return wordCount;
     }
 }
