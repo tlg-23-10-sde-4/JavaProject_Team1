@@ -10,24 +10,27 @@ public class Animal<Word> {
     private final String image;   // pulls from file/path
     private final String sound;   // pulls from file/path
     private final int size;
-    private int[] wordCount;
+    private String[] wordCount;
     private final List<String> words = new ArrayList<>();
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
+    private Hit hit;
+    //C:\StudentWork\MiniProject\animal_resources
 
     public void execute() {
         Hit hit = calculateHit();
     }
 
-    public Animal(String name, String image, String sound, int size) {
+    public Animal(String name, String image, String sound, int size, String[] wordCount) {
         this.name = name;
         this.image = image;
         this.sound = sound;
         this.size = size;
+        this.wordCount = wordCount;
     }
 
-    public static Animal createInstance(String name, String image, String sound, int size) {
-        return new Animal(name, image, sound, size);
+    public static Animal createInstance(String name, String image, String sound, int size, String[] wordCount) {
+        return new Animal(name, image, sound, size, wordCount);
     }
 
     // @TODO: Pull method from Location enum
@@ -50,7 +53,7 @@ public class Animal<Word> {
         return size;
     }
 
-    public int[] getWordCount() {
+    public String[] getWordCount() {
         getWords();
         List<String> animalWords = List.of(new String[words.size()]); // needs to be given from Location enum
         int index = 0;
@@ -65,10 +68,10 @@ public class Animal<Word> {
                 animalWords.remove(deleteIndex);
             }
         }
-        return wordCount;
+        return animalWords.toArray(new String[0]);
     }
 
-    public void getWords() {
+    public String[] getWords() {
         List<String> words = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
             String line;
@@ -81,7 +84,7 @@ public class Animal<Word> {
         String[] wordsArray = new String[words.size()];
         Collections.shuffle(words);
         wordsArray = words.toArray(wordsArray);
-
+        return wordsArray;
     }
 
     private Hit calculateHit() {
@@ -92,8 +95,7 @@ public class Animal<Word> {
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.matches(String.valueOf(words))) {
                 validInput = true;
-                Hit = null;
-
+                hit = null;
             }
         }
     }
