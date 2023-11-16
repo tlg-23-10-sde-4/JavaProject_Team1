@@ -3,17 +3,19 @@ package com.typehunter;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 
-public class HunterScore implements  Serializable {
+
+
+public class HunterScore implements Comparable<HunterScore>, Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int errors = 0;
     private long elapsedTime = 15L;
+    private HunterScore scores;
 
-
-    public HunterScore() {
-
-    }
+    HunterScore scores1 = new HunterScore(2, 10L);
+    HunterScore scores2 = new HunterScore(5, 9L);
 
     public HunterScore(int errors, long elapsedTime) {
         setErrors(errors);
@@ -43,7 +45,7 @@ public class HunterScore implements  Serializable {
     }
 
     //Calculates the difference in seconds between the startTimer() and endTime()
-    public void setElapsedTime(long elapsedTime) {
+    public void setElapsedTime(long elapsedTime ) {
         elapsedTime = Duration.between(startTime, endTime).getSeconds();
 
     }
@@ -52,4 +54,11 @@ public class HunterScore implements  Serializable {
         return elapsedTime;
 
     }
+    public int compareTo(HunterScore other){
+       if(this.getElapsedTime() == other.getElapsedTime()) {
+           return Integer.compare(this.getErrors(), other.getErrors());
+       }
+
+       return Long.compare(this.getElapsedTime(), other.getElapsedTime());
+        }
 }

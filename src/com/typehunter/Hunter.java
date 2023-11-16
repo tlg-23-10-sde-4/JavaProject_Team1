@@ -3,7 +3,7 @@ package com.typehunter;
 import java.io.Serializable;
 import java.util.*;
 
-class Hunter {
+public class Hunter {
    // Map<String, HunterScore> hunterScoreMap = new HashMap<>();
     private  String name;
 
