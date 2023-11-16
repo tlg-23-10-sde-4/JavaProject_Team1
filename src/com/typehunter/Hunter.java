@@ -5,10 +5,7 @@ import java.util.*;
 
 class Hunter {
    // Map<String, HunterScore> hunterScoreMap = new HashMap<>();
-
     private  String name;
-
-
 
 
 
@@ -16,14 +13,6 @@ class Hunter {
         setName(name);
 
     }
-
-
-
-    public void score(){
-
-
-    }
-
 
     public String getName() {
         return name;
