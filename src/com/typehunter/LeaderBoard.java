@@ -5,14 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
-public class LeaderBoard implements Comparable<HunterScore>, Serializable {
+public class LeaderBoard implements  Serializable {
     private String name;
     private static final String dataFilePath = "leaderboard/leaderboard.dat";
-    //private HashMap<String, HunterScore> hunterScores;
-    private final Map<String, HunterScore> scoreMap = new HashMap<>();
+    private final Map<String, HunterScore> scoreMap = new TreeMap<>();
     private HunterScore score;
-
+    // create map of String(huntername) and HunterScore(int and long)
 
     public static LeaderBoard getInstance() {
         LeaderBoard board = null;
@@ -30,8 +30,6 @@ public class LeaderBoard implements Comparable<HunterScore>, Serializable {
         }
         return board;
     }
-    // create map of String(huntername) and HunterScore(int and long)
-
 
     private LeaderBoard() {
 
@@ -51,14 +49,8 @@ public class LeaderBoard implements Comparable<HunterScore>, Serializable {
     }
 
     public void displayLeaderBoard() {
-        for (String name : scoreMap.keySet()) {
-            HunterScore hunterScore = scoreMap.get(name);
-            System.out.println(name + ": " + score);
+        for (Map.Entry<String, HunterScore> entry : scoreMap.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
         }
-
-    }
-
-    public int compareTo(HunterScore other) {
-        return Integer.compare((int) this.score.getElapsedTime(), (int) other.getElapsedTime());
     }
 }
