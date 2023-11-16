@@ -3,10 +3,7 @@ package com.typehunter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Animal<Word> {
     private final String name;
@@ -82,6 +79,7 @@ public class Animal<Word> {
             e.printStackTrace();
         }
         String[] wordsArray = new String[words.size()];
+        Collections.shuffle(words);
         wordsArray = words.toArray(wordsArray);
 
     }
