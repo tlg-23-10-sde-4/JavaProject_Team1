@@ -1,4 +1,4 @@
-Duck,2,file\path\image,file\path\sound
+Duck,2,duck.txt,duck.wav
 Deer,4,file\path\image,file\path\sound
 Moose,6,file\path\image,file\path\sound
 Artic_Hare,3,file\path\image,file\path\sound
