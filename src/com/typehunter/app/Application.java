@@ -1,10 +1,10 @@
 package com.typehunter.app;
-package com.typehunter;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
 import com.typehunter.Animal;
-
+import com.typehunter.Hunter;
+import com.typehunter.HunterScore;
 import javax.swing.*;
 import java.util.Locale;
 import java.util.Scanner;
@@ -13,8 +13,8 @@ public class Application {
     //private
     Application typeHunterGame = new Application();
     private Animal animal;
+    private int currentLevel;
     private Location location;
-
 
     //fields
     String rules = " How to play:\n" +
@@ -71,14 +71,64 @@ public class Application {
         typeHunterGame.animal.getWords();
 
         //TODO: create animals
-        typeHunterGame.location.initializeAnimal();
+
 
         //TODO: place animal in "location"
-
+        Location currentLocation = Location.getLocationByLevel(currentLevel);
+        if(currentLocation != null) {
+            currentLocation.initializeAnimal(currentLevel);
+        }
+        else {
+            System.out.println(" Invalid level: " + currentLevel);
+        }
     }
 
     private void start() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Are you a  new player? Y|N");
+        String isNewPlayer = scanner.next().trim().toUpperCase();
+
+        int startingLevel = 1;
+        int startingRound = 1;
+
+        if(!isNewPlayer.equals("N")) {
+            System.out.println("Enter your starting level (1, 2, or 3): ");
+            startingLevel = getUserInput(scanner,1,3);
+
+            System.out.println("Enter your starting round (1, 2, or 3): ");
+            startingRound = getUserInput(scanner,1,3);
+        }
+        else {
+            System.out.println("Happy Hunting!");
+           // if(!isNewPlayer.equals("Y")) {
+           //     startingLevel = 1;
+           //     startingRound = 1;
+        }
     }
+
+    private int getUserInput(Scanner scanner, int min, int max) {
+        int input = -1;
+        boolean validInput = false;
+
+        while(!validInput){
+            if(scanner.hasNextInt()) {
+                input =scanner.nextInt();
+                if (input >= min && input <= max) {
+                    validInput = true;
+                }
+            }
+            else if(validInput) {
+                System.out.println("Invalid input. Please enter a number between " + min+
+                        " and " + max + ".");
+                }
+        else  {
+            System.out.println("Invalid input. Please enter a valid number." );
+            scanner.next();
+            }
+        }
+        return input;
+    }
+
 
     private void game() {
     }
@@ -88,9 +138,12 @@ public class Application {
     }
 
     private void save() {
+        //call on the method from Hunterscore
     }
 
     private void exit() {
+        // prompter
+        Console.clear();
     }
 
 
