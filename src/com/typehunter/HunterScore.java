@@ -13,8 +13,6 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
     private long elapsedTime = 0L;
     private String hunterName;
 
-    HunterScore scores1 = new HunterScore();
-    HunterScore scores2 = new HunterScore();
 
     public HunterScore(String hunterName) {
         this.hunterName = hunterName;
@@ -57,16 +55,7 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
     }
     public int compareTo(HunterScore other){
         int result = Long.compare(this.getElapsedTime(), other.getElapsedTime());
-        if ()
-
-
-
-//       if(this.getElapsedTime() == other.getElapsedTime()) {
-//           return Integer.compare(this.getErrors(), other.getErrors());
-//       }
-//
-//       return Long.compare(this.getElapsedTime(), other.getElapsedTime());
-
-
+        //if() these are tied compare errors
+    return result;
     }
 }
