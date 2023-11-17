@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-enum Location {
+public enum Location {
     FOREST(1, new String[6]),
     TUNDRA(2, new String[12]),
     SAVANNA(3, new String[24]), ;
@@ -30,7 +30,7 @@ enum Location {
     public void initializeAnimal(int currentLevel) {            //should create 3 instances of an Animal object
         if(level == currentLevel) {
             for(int i=0; i < 3; i++) {
-            animalWords.add(new Animal("Name", "Image", "Sound", "Size"));
+            animalWords.add(new Animal("Name", "Image", "Sound", animalCreated.getSize()));
 
 //            new Animal( animalCreated.getName(), animalCreated.getImage(),
 //                    animalCreated.getSound(),animalCreated.getSize());

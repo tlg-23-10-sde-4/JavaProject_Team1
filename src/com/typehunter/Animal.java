@@ -1,5 +1,7 @@
 package com.typehunter;
 
+import com.typehunter.app.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,8 +17,9 @@ public class Animal<Word> {
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
     //C:\StudentWork\MiniProject\animal_resources
+    private Location location;
 
-    private Animal(String name, String image, String sound, int size) {
+    public Animal(String name, String image, String sound, int size) {
         this.name = name;
         this.image = image;
         this.sound = sound;
@@ -88,7 +91,7 @@ public class Animal<Word> {
 
     private String calculateHit() {
         int wordIndex = 0;
-        int givenIndex = locationIndex; // @TODO this would be the number/size/wordCount from location enum, change accordingly
+     int givenIndex = location.getWordCount().length; // @TODO this would be the number/size/wordCount from location enum, change accordingly
         wordCount = wordsArray[wordIndex];
         boolean validInput = false;
         while (!validInput) {
