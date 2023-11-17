@@ -16,10 +16,6 @@ public class Animal<Word> {
     private final Scanner scanner = new Scanner(System.in);
     //C:\StudentWork\MiniProject\animal_resources
 
-    public void execute() {
-        Hit hit = calculateHit();
-    }
-
     private Animal(String nageme, String image, String sound, int size) {
         this.name = name;
         this.image = image;
