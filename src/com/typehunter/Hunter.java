@@ -6,11 +6,12 @@ import java.util.*;
 public class Hunter {
    // Map<String, HunterScore> hunterScoreMap = new HashMap<>();
     private  String name;
+    private HunterScore score;
 
 
-
-    public Hunter(String name) {
-        setName(name);
+    private Hunter(String name) {
+       this.name = name;
+       score = new HunterScore(name);
 
     }
 
@@ -18,8 +19,4 @@ public class Hunter {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-
-    }
 }

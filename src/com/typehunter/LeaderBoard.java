@@ -3,15 +3,16 @@ package com.typehunter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class LeaderBoard implements  Serializable {
+public class LeaderBoard implements Serializable {
     private String name;
     private static final String dataFilePath = "leaderboard/leaderboard.dat";
     private final Map<String, HunterScore> scoreMap = new TreeMap<>();
-    private HunterScore score;
+
     // create map of String(huntername) and HunterScore(int and long)
 
     public static LeaderBoard getInstance() {
@@ -34,7 +35,6 @@ public class LeaderBoard implements  Serializable {
     private LeaderBoard() {
 
     }
-
     public void addScore(String name, HunterScore score) {
         scoreMap.put(name, score);
     }
@@ -50,6 +50,8 @@ public class LeaderBoard implements  Serializable {
 
     public void displayLeaderBoard() {
         for (Map.Entry<String, HunterScore> entry : scoreMap.entrySet()) {
+                String name = entry.getKey();
+                HunterScore hunterScore = entry.getValue();
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
