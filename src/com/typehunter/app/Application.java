@@ -16,7 +16,6 @@ public class Application {
     private int currentLevel;
     private Location location;
 
-
     //fields
     String rules = " How to play:\n" +
             "            - To be a master Type Hunter, the player must complete all three levels.\n" +
