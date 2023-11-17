@@ -6,11 +6,12 @@ import java.util.*;
 public class Hunter {
    // Map<String, HunterScore> hunterScoreMap = new HashMap<>();
     private  String name;
-
+    private HunterScore score;
 
 
     private Hunter(String name) {
-        setName(name);
+       this.name = name;
+       score = new HunterScore(name);
 
     }
 
@@ -18,15 +19,4 @@ public class Hunter {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-
-    }
-
-    public static Hunter createHunter(String name) {
-        if (Objects.isNull(name) || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Please enter your name!");
-        }
-        return new Hunter(name);
-    }
 }

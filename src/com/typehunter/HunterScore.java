@@ -10,16 +10,14 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int errors = 0;
-    private long elapsedTime = 15L;
-    private HunterScore scores;
+    private long elapsedTime = 0L;
+    private String hunterName;
 
-    HunterScore scores1 = new HunterScore(2, 10L);
-    HunterScore scores2 = new HunterScore(5, 9L);
+    HunterScore scores1 = new HunterScore();
+    HunterScore scores2 = new HunterScore();
 
-    public HunterScore(int errors, long elapsedTime) {
-        setErrors(errors);
-        setElapsedTime(elapsedTime);
-
+    public HunterScore(String hunterName) {
+        this.hunterName = hunterName;
     }
 
     //Starts timer when round starts and grabs and stores current time
@@ -31,6 +29,10 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
     public void endTimer() {
         endTime = LocalDateTime.now();
 
+    }
+
+    public String getHunterName() {
+        return hunterName;
     }
 
     public int getErrors() {
@@ -54,10 +56,17 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
 
     }
     public int compareTo(HunterScore other){
-       if(this.getElapsedTime() == other.getElapsedTime()) {
-           return Integer.compare(this.getErrors(), other.getErrors());
-       }
+        int result = Long.compare(this.getElapsedTime(), other.getElapsedTime());
+        if ()
 
-       return Long.compare(this.getElapsedTime(), other.getElapsedTime());
-        }
+
+
+//       if(this.getElapsedTime() == other.getElapsedTime()) {
+//           return Integer.compare(this.getErrors(), other.getErrors());
+//       }
+//
+//       return Long.compare(this.getElapsedTime(), other.getElapsedTime());
+
+
+    }
 }
