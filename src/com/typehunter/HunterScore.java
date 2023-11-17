@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
-
+//TODO: Create a method that increments count of errors based off prompts to retry
 public class HunterScore implements Comparable<HunterScore>, Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -38,11 +38,6 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
 
     }
 
-    public void setErrors(int errors) {
-        this.errors = errors;
-
-    }
-
     //Calculates the difference in seconds between the startTimer() and endTime()
     public void setElapsedTime(long elapsedTime ) {
         elapsedTime = Duration.between(startTime, endTime).getSeconds();
@@ -53,9 +48,11 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
         return elapsedTime;
 
     }
-    public int compareTo(HunterScore other){
+    public int compareTo(HunterScore other) {
         int result = Long.compare(this.getElapsedTime(), other.getElapsedTime());
-        //if() these are tied compare errors
-    return result;
+        if (result == 0) {
+            return Integer.compare(this.getErrors(), other.getErrors());
+        }
+        return result;
     }
 }
