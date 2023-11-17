@@ -6,7 +6,6 @@ import java.time.LocalDateTime;
 import java.util.Comparator;
 
 
-
 public class HunterScore implements Comparable<HunterScore>, Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
