@@ -14,14 +14,9 @@ public class Animal<Word> {
     //private final List<String> words = new ArrayList<>();
     private String[] wordsArray = new String[0];
     private final Scanner scanner = new Scanner(System.in);
-    private Hit hit;
     //C:\StudentWork\MiniProject\animal_resources
 
-    public void execute() {
-        Hit hit = calculateHit();
-    }
-
-    public Animal(String name, String image, String sound, int size) {
+    private Animal(String nageme, String image, String sound, int size) {
         this.name = name;
         this.image = image;
         this.sound = sound;
@@ -31,6 +26,11 @@ public class Animal<Word> {
     public static Animal createInstance(String name, String image, String sound, int size) {
         return new Animal(name, image, sound, size);
     }
+
+    // if/else statement if array.length == 1 , animal is BLANK, if == 2, animal NEXT_BLANK,
+    // if animal is BLANK, pull BLANK.txt and BLANK.sound and assign to image and sound
+    // BLANK is assigned to name, size is assigned from location enum
+    // getWordCount()
 
     // @TODO: Pull method from Location enum
     public String getName() {
@@ -52,7 +52,7 @@ public class Animal<Word> {
         return size;
     }
 
-    public String[] getWordCount() {
+    public String getWordCount() {
         getWords();
         List<String> animalWords = List.of(new String[wordsArray.length]); // needs to be given from Location enum
         int index = 0;
@@ -70,7 +70,7 @@ public class Animal<Word> {
         return wordCount;
     }
 
-    public void getWords() {
+    public String[] getWords() {
         List<String> words = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
             String line;
@@ -88,7 +88,7 @@ public class Animal<Word> {
 
     private String calculateHit() {
         int wordIndex = 0;
-        int givenIndex = locationIndex;
+        int givenIndex = locationIndex; // @TODO this would be the number/size/wordCount from location enum, change accordingly
         wordCount = wordsArray[wordIndex];
         boolean validInput = false;
         while (!validInput) {
