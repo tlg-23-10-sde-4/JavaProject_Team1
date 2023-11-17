@@ -2,6 +2,7 @@ package com.typehunter.app;
 
 import com.typehunter.Animal;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,7 +16,7 @@ enum Location {
     private final int level;
     private final String [] wordCount;
 
-    private List<Animal> animalWords; // list of animals
+    private List<Animal> animalWords = new ArrayList<>(); // list of animals
     private Animal animalCreated;       //
 
     Location(int level, String[] wordCount) {
@@ -23,13 +24,17 @@ enum Location {
         System.out.printf("LEVEL %s: %s", getLevel(), Location.this);
         this.wordCount = wordCount;
         this.animalWords = null;
-        initializeAnimal();
+        initializeAnimal(level);
     }
 
-    public void initializeAnimal() {            //should create 3 instances of an Animal object
-        for(int i=0; i < 3; i++) {
-            new Animal(animalCreated.getName(), animalCreated.getImage(),
-                    animalCreated.getSound(),animalCreated.getSize());
+    public void initializeAnimal(int currentLevel) {            //should create 3 instances of an Animal object
+        if(level == currentLevel) {
+            for(int i=0; i < 3; i++) {
+            animalWords.add(new Animal("Name", "Image", "Sound", "Size"));
+
+//            new Animal( animalCreated.getName(), animalCreated.getImage(),
+//                    animalCreated.getSound(),animalCreated.getSize());
+            }
         }
     }
 
@@ -44,6 +49,18 @@ enum Location {
     }
 
     //methods
+    //
+    public static Location getLocationByLevel(int level){
+        for (Location location : Location.values()) {
+            if(location.getLevel() == level) {
+                return location;
+            }
+        }
+        return null;
+    }
+
+
+
     //********might not be necessary if shuffle occurs at animal******
    public void shuffleWords() {
        Collections.shuffle(animalWords);
