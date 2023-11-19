@@ -9,13 +9,15 @@ public class LeaderBoard implements Serializable {
     private String name;
     private static final String dataFilePath = "leaderboard/leaderboard.dat";
     private final Map<String, HunterScore> scoreMap = new TreeMap<>();
-    private List<HunterScore> scores;
+    private List<Hunter> hunters;
 
-    public LeaderBoard(List<HunterScore> scores) {
-        this.scores = scores;
+    public LeaderBoard(List<Hunter> hunters) {
+        this.hunters = hunters;
     }
 
-    //Creates instance of LeaderBoard if there isnt one already. IUf there is then reads from file.
+
+
+    //Creates instance of LeaderBoard if there isnt one already. If there is then reads from file.
     public static LeaderBoard getInstance() {
         LeaderBoard board = null;
         if (Files.exists(Path.of(dataFilePath))) {
@@ -49,9 +51,9 @@ public class LeaderBoard implements Serializable {
     }
 
     public void show() {
-        scores.sort(null);
-        for (HunterScore score : scores) {
-            System.out.println("Name:" + name + " Time:" + score.getElapsedTime() + " Errors:" + score.getErrors());
+        hunters.sort(null);
+        for (Hunter hunter : hunters) {
+            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getScore().getElapsedTime() + " Errors:" + hunter.getScore().getErrors());
         }
     }
 }
