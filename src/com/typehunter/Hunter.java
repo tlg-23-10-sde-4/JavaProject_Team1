@@ -3,14 +3,13 @@ package com.typehunter;
 import java.io.Serializable;
 import java.util.*;
 
-public class Hunter {
+public class Hunter implements Comparable<Hunter> {
     private  String name;
-    private HunterScore score;
+    private HunterScore score = new HunterScore();
 
     //Creating a Hunter with name and a HunterScore object associated with name
     private Hunter(String name) {
        this.name = name;
-       score = new HunterScore(name);
     }
 
     public HunterScore getScore() {
@@ -21,4 +20,13 @@ public class Hunter {
         return name;
     }
 
+    @Override
+    public int compareTo(Hunter other) {
+        int result = Long.compare(this.getScore().getElapsedTime(), other.getScore().getElapsedTime());
+
+        if (result == 0) {
+            result = Integer.compare(this.getScore().getErrors(), other.getScore().getErrors());
+        }
+        return result;
+    }
 }

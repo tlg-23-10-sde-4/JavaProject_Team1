@@ -11,11 +11,15 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
     private LocalDateTime endTime;
     private int errors = 0;
     private long elapsedTime = 0L;
-    private String hunterName;
 
 
-    public HunterScore(String hunterName) {
-        this.hunterName = hunterName;
+    public HunterScore() {
+
+    }
+
+     HunterScore(int errors, long elapsedTime) {
+       this.errors = errors;
+       this.elapsedTime = elapsedTime;
     }
 
     //Starts timer when round starts and grabs and stores current time
@@ -29,9 +33,6 @@ public class HunterScore implements Comparable<HunterScore>, Serializable {
 
     }
 
-    public String getHunterName() {
-        return hunterName;
-    }
 
     public int getErrors() {
         return errors;
