@@ -75,7 +75,7 @@ public class Animal {
     }
 
     // TODO: ADD actual file path
-    // Reads .wav file for sound clip of animal. I
+    // Reads .wav file for sound clip of animal.
     public static void playSound(String filePath) {
         try {
             File soundFile = new File(filePath);

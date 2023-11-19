@@ -51,7 +51,7 @@ public class LeaderBoard implements Serializable {
     public void show() {
         scores.sort(null);
         for (HunterScore score : scores) {
-            System.out.println("Name:" + score.getHunterName() + " Time:" + score.getElapsedTime() + " Errors:" + score.getErrors());
+            System.out.println("Name:" + name + " Time:" + score.getElapsedTime() + " Errors:" + score.getErrors());
         }
     }
 }
