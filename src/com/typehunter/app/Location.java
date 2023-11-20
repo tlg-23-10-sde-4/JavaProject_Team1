@@ -14,7 +14,7 @@ enum Location {
 
     //FIELDS
     private final int level;
-    private final in numWords;
+    private final int numWords;
     private final List<String> words;   // 6, 12, or 24 words; depending on the level
     private List<Animal> animalWords = new ArrayList<>(); // list of animals
 
