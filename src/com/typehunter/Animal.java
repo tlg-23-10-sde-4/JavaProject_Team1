@@ -1,9 +1,7 @@
 package com.typehunter;
 
 import javax.sound.sampled.*;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,9 +63,9 @@ public class Animal {
         return image;
     }
 
-    public boolean hit() {
+    public int hit() {
         hitsTaken++;
-        return (hitsTaken == hitsRequired);
+        return (hitsTaken);
     }
 
     public boolean isDead() {
