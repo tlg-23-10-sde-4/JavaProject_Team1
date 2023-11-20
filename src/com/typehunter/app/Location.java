@@ -118,6 +118,7 @@ public enum Location {
 
     // SCOTT. added for nextLevel()
     private void setCurrentLocation(Location nextLocation) {
+        this.currentLocation;
     }
 
     //ACCESSOR
