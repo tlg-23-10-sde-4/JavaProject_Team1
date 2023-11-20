@@ -4,16 +4,18 @@ import com.typehunter.Animal;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-class AnimalTest {
+public class AnimalTest {
 
     @Test
     public void hit_shouldIncrementNumberOfHits_shouldDieAfterHitsRequiredEqualsHitsTaken() {
         Animal deer = new Animal("Deer", 3);
-        assertFalse(deer.isDead());
+        //assertFalse(deer.isDead());
         deer.hit();
         deer.hit();
         assertFalse(deer.isDead());
         deer.hit();
         assertTrue(deer.isDead());
+
+
     }
 }

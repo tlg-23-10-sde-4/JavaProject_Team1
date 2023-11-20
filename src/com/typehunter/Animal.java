@@ -34,8 +34,8 @@ public class Animal {
         this.name = name;
         this.hitsRequired = hitsRequired;
         try {
-            this.image = Files.readString(Path.of("resources/animals/images/" +
-                    getName().toLowerCase() + ".txt"));  // duck.txt
+            this.image = Files.readString(Path.of("resourceFiles/images/" +
+                    getName().toLowerCase() + ".txt"));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -134,7 +134,7 @@ public class Animal {
 //        this.hitsRequired = hitsRequired;
 //        try {
 //            this.image = Files.readString(Path.of("resources/animals/images/" +
-//                    getName().toLowerCase() + ".txt"));  // duck.txt
+//                    getName().toLowerCase() + ".txt"));
 //        }
 //        catch (IOException e) {
 //            e.printStackTrace();

@@ -20,11 +20,13 @@ public enum Location {
 
     //FIELDS
     private final int level;
-    private final List<String> wordsByLevel;
-    private final List<Animal> animalList = new ArrayList<>();
+    private static final List<String> wordsByLevel = null;
+    private static final List<Animal> animalList = new ArrayList<>();
 
     //Static
     private static List<String> wordBank;
+    private final int wordCount;
+
     private static List<String> getWordBank() {
         if (wordBank == null) {
             try {
@@ -40,7 +42,8 @@ public enum Location {
     //CTORS
     Location(int level, int wordCount) {
         this.level = level;
-        wordsByLevel =getWordBank().subList(0, wordCount);
+        this.wordCount = wordCount;
+        //wordsByLevel = getWordBank().subList(0, wordCount);
         initializeAnimal();
     }
 
@@ -50,13 +53,13 @@ public enum Location {
             String animalFilePath;
             switch (this) {
                 case FOREST:
-                    animalFilePath = "forest/Forest.txt";
+                    animalFilePath = "forest/forest.txt";
                     break;
                 case TUNDRA:
-                    animalFilePath = "tundra/Tundra.txt";
+                    animalFilePath = "tundra/tundra.txt";
                     break;
                 case SAVANNA:
-                    animalFilePath = "savanna/Savanna.txt";
+                    animalFilePath = "savanna/savanna.txt";
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + this);
@@ -78,7 +81,7 @@ public enum Location {
         return level;
     }
 
-    public String nextWord() {
+    public static String nextWord() {
         return wordsByLevel.remove(0);
     }
 
@@ -86,11 +89,11 @@ public enum Location {
         return wordsByLevel.size();
     }
 
-    public Animal nextAnimal() {
+    public static Animal nextAnimal() {
         return animalList.remove(0);
     }
 
-    public boolean isComplete() {
+    public static boolean isComplete() {
         return animalList.get(0).isDead() &&
                 animalList.get(1).isDead() &&
                 animalList.get(2).isDead();
