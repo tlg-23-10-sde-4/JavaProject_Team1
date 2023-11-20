@@ -8,15 +8,18 @@ import com.typehunter.HunterScore;
 import javax.swing.*;
 import java.util.Locale;
 import java.util.Scanner;
+//TODO reference to a single prompted
 
 public class Application {
     //private
-    Application typeHunterGame = new Application();
-    private Animal animal;
+//    Application typeHunterGame = new Application();
+    private Animal animal;  //may or may not be necessary
     private int currentLevel;
     private Location location;
+    private Hunter player;
 
-    //fields
+
+    //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
     String rules = " How to play:\n" +
             "            - To be a master Type Hunter, the player must complete all three levels.\n" +
             "            - Each level contains 3 rounds with a progressing difficulty.\n" +
@@ -68,7 +71,7 @@ public class Application {
 
     private void load() {
         //TODO: load word bank
-        typeHunterGame.animal.getWords();
+        //typeHunterGame.animal.getWords();
 
         //TODO: create animals
 
@@ -129,8 +132,16 @@ public class Application {
         return input;
     }
 
-
+    //  Scott: get correct words and increment errors
     private void game() {
+        String theCorrectWord = "rabbit";
+        String userInput = "rabbit";
+        if (userInput.equals(theCorrectWord)) {
+            animal.hit();
+
+        } else {
+            player.getScore().incrementErrors();
+        }
     }
     public void playRound(){
         //9 rounds, 3 per location

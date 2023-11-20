@@ -14,10 +14,11 @@ public enum Location {
 
     //FIELDS
     private final int level;
-    private final String [] wordCount;
-
+    private final int numWords;
+    private final List<String> words;   // 6, 12, or 24 words; depending on the level
     private List<Animal> animalWords = new ArrayList<>(); // list of animals
-    private Animal animalCreated;       //
+
+    private final String [] wordCount;
 
     Location(int level, String[] wordCount) {
         this.level = level;
@@ -58,8 +59,6 @@ public enum Location {
         }
         return null;
     }
-
-
 
     //********might not be necessary if shuffle occurs at animal******
    public void shuffleWords() {

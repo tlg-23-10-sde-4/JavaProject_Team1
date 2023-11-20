@@ -3,18 +3,21 @@ package com.typehunter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class LeaderBoard implements Serializable {
     private String name;
     private static final String dataFilePath = "leaderboard/leaderboard.dat";
     private final Map<String, HunterScore> scoreMap = new TreeMap<>();
+    private List<Hunter> hunters;
 
-    // create map of String(huntername) and HunterScore(int and long)
+    public LeaderBoard(List<Hunter> hunters) {
+        this.hunters = hunters;
+    }
 
+
+
+    //Creates instance of LeaderBoard if there isnt one already. If there is then reads from file.
     public static LeaderBoard getInstance() {
         LeaderBoard board = null;
         if (Files.exists(Path.of(dataFilePath))) {
@@ -44,15 +47,13 @@ public class LeaderBoard implements Serializable {
             out.writeObject(this);
         }
         catch (Exception e) {
-
         }
     }
 
-    public void displayLeaderBoard() {
-        for (Map.Entry<String, HunterScore> entry : scoreMap.entrySet()) {
-                String name = entry.getKey();
-                HunterScore hunterScore = entry.getValue();
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+    public void show() {
+        hunters.sort(null);
+        for (Hunter hunter : hunters) {
+            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getScore().getElapsedTime() + " Errors:" + hunter.getScore().getErrors());
         }
     }
 }

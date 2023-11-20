@@ -5,58 +5,80 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
-public class Animal<Word> {
-    private final String name;
-    private  String imageFile = "filePath";   // pulls from file/path
-    private  String soundFile = "filePath";   // pulls from file/path
-    private String wordCount;
-    //private final List<String> words = new ArrayList<>();
-    // NOTE1: Do we need int size for number or words per animal or String[] with a size of... Line 17-18
-    private String[] wordsArray = new String[0];
-    private final int size;
+public class Animal {
+    private static String name;
+    private static int hitsRequired;
+    private String image;
+    private String imageFile;
+    private int hitsTaken = 0;
+    private boolean isDead;
+    private static String animalConstructor ="animalConstructor.txt";
     private final Scanner scanner = new Scanner(System.in);
-    //C:\StudentWork\MiniProject\animal_resources
+    //TODO method hit, hit field starts at 0, ++
 
-    private Animal(String name, String imageFile, String soundFile, String[] words) {
+    public Animal(String name, int hitsRequired) {
         this.name = name;
-        this.imageFile = imageFile;
-        this.soundFile = soundFile;
-        this.size = size;
+        this.hitsRequired = hitsRequired;
     }
 
-    public static Animal createInstance(String name, String imageFile, String soundFile, String[] words) {
-        return new Animal(name, imageFile, soundFile, words);
+    public Animal(String name, int hitsRequired, String imageFile) {
+        this.name = name;
+        this.hitsRequired = hitsRequired;
+        try {
+            this.image = Files.readString(Path.of("resources/animals/images/" +
+                    getName().toLowerCase() + ".txt"));  // duck.txt
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    // if/else statement if array.length == 1 , animal is BLANK, if == 2, animal NEXT_BLANK,
-    // if animal is BLANK, pull BLANK.txt and BLANK.sound and assign to image and sound
-    // BLANK is assigned to name, size is assigned from location enum
-    // getWordCount()
-
-    // @TODO: Pull method from Location enum
-    public String getName() {
-        return name;
-    }
-
-    // @TODO: set a file path, create local path and provide file
-    // Reads image from text file
-    public String displayImage() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(imageFilePath))) {
-
-            while ((imageFile = reader.readLine()) != null) {
-                return imageFile;
-            }
+    public static List<Animal> createAnimalFromFile() {
+        List<Animal> animals = new ArrayList<>();
+        try {
+            List<String> lines = Files.readAllLines(Path.of(animalConstructor));
+            for (String line : lines) {
+                String[] tokens = line.split(",");
+                    String name = tokens[0].trim();
+                    int size = Integer.parseInt(tokens[1]);
+                    String imageFile = tokens[2];
+                    Animal animal = new Animal(name, hitsRequired, imageFile);
+                    animals.add(animal);
+                }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return imageFile;
+        return animals;
     }
 
+    public String show() {
+        System.out.println(image);
+        return image;
+    }
+
+    public boolean hit() {
+        hitsTaken++;
+        return (hitsTaken == hitsRequired);
+    }
+
+    public boolean isDead() {
+        return (hitsTaken == hitsRequired);
+    }
+
+    public int getHitsRequired() {
+        return hitsRequired;
+    }
+
+    public static String getName() {
+        return name;
+    }
 
     // TODO: ADD actual file path
-    // Reads .wav file for sound clip of animal. I
+    // Reads .wav file for sound clip of animal.
     public static void playSound(String filePath) {
         try {
             File soundFile = new File(filePath);
@@ -67,71 +89,6 @@ public class Animal<Word> {
 
         } catch(UnsupportedAudioFileException | LineUnavailableException | IOException e) {
             e.printStackTrace();
-
         }
-    }
-//    // @TODO: set a file path, create local path and provide file
-//    public String getSound() {
-//        return sound;
-//    }
-
-    // @TODO: Pull method from Location enum
-    public int getSize() {
-        return size;
-    }
-
-    // After words have been pulled from text file. This will assign to animals
-    public String getWordCount() {
-        List<String> animalWords = List.of(new String[wordsArray.length]); // needs to be given from Location enum
-        int index = 0;
-        for (String word : wordsArray) {
-            animalWords.set(index, word);
-            index++;
-        }
-        for (String word : wordsArray) {
-            System.out.println(word);
-            int deleteIndex = wordsArray.length;
-            if (deleteIndex >= 0 && deleteIndex < animalWords.size()) {
-                animalWords.remove(deleteIndex);
-            }
-        }
-        return wordCount;
-    }
-
-    // Reading from the file to get words
-    public String[] getWordFile() {
-        List<String> words = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader("words.txt"))) {
-            String line;
-            while ((line = in.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String[] wordsArray = new String[0];
-        Collections.shuffle(words);
-        wordsArray = words.toArray(wordsArray);
-        return wordsArray;
-    }
-
-    // This checks if the user input matches the word. Check Prompter class from Jay?
-    private String calculateHit() {
-        int wordIndex = 0;
-        int givenIndex = size; // @TODO this would be the number/size/wordCount from location enum, change accordingly
-        wordCount = wordsArray[wordIndex];
-        boolean validInput = false;
-        while (!validInput) {
-            System.out.println(wordCount);
-            String input = scanner.nextLine().trim().toLowerCase();
-            if (input.matches(String.valueOf(wordCount))) {
-                validInput = false;
-                wordIndex++;
-            }
-            if (wordIndex >= givenIndex) {
-                validInput = true;
-            }
-        }
-        return wordCount;
     }
 }
