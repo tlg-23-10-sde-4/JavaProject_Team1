@@ -32,6 +32,9 @@ public class HunterScore implements  Serializable {
         elapsedTime = Duration.between(startTime, endTime).getSeconds();
     }
 
+    public void incrementErrors() {
+        errors++;
+    }
 
     public int getErrors() {
         return errors;

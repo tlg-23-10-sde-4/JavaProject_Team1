@@ -16,6 +16,8 @@ public class Application {
     private Animal animal;  //may or may not be necessary
     private int currentLevel;
     private Location location;
+    private Hunter player;
+
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
     String rules = " How to play:\n" +
@@ -130,8 +132,16 @@ public class Application {
         return input;
     }
 
-
+    //  Scott: get correct words and increment errors
     private void game() {
+        String theCorrectWord = "rabbit";
+        String userInput = "rabbit";
+        if (userInput.equals(theCorrectWord)) {
+            animal.hit();
+
+        } else {
+            player.getScore().incrementErrors();
+        }
     }
     public void playRound(){
         //9 rounds, 3 per location
