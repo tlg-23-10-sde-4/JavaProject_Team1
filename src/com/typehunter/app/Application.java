@@ -95,17 +95,17 @@ public class Application {
         System.out.println("Are you a new player? Y|N");
         String isNewPlayer = scanner.next().trim().toUpperCase();
 
-        if (!isNewPlayer.equals("N")) {
+
+        if (!isNewPlayer.equals("N")) { // SCOTT: IF() for existing players  ELSE new player
             System.out.println("Enter your name: ");
             String name = scanner.next().trim().toUpperCase();
-  //          ranking.show();
-//            System.out.println("Enter your starting level (1, 2, or 3): ");
-//            startingLevel = getUserInput(scanner, 1, 3);
-//
-//            System.out.println("Enter your starting round (1, 2, or 3): ");
-//            startingRound = getUserInput(scanner, 1, 3);
+            // pull existing Hunter data
+            // enter level you wish to start
+
         } else {
-            //load();
+
+            // Start at first level location FOREST
+          currentLocation = Location.FOREST;
             System.out.println("Happy Hunting!");
         }
         playRound();
