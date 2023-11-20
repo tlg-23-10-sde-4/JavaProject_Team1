@@ -20,7 +20,7 @@ public class Application {
     private Location location;
     private Hunter player;
     private LeaderBoard ranking;
-    private HunterScore finalscore;
+    private HunterScore finalScore;
     Scanner scanner = new Scanner(System.in);
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
@@ -40,7 +40,7 @@ public class Application {
         do {
             welcome();
             rule();
-            load();
+//            load();
             start();
             game();
             save();
@@ -69,7 +69,7 @@ public class Application {
         System.out.println("=============================================");
         System.out.println(rules);
         Prompter begin = new Prompter(new Scanner(System.in));
-        System.out.println("P= play, E=exit");
+        System.out.println("P=play, E=exit");
         String input = scanner.nextLine().trim();
 
         if (input.matches("P|p")) {
@@ -80,32 +80,32 @@ public class Application {
         }
     }
 
-    public void load() {
-        System.out.println("Enter your name: ");
-        String name = scanner.nextLine().trim().toUpperCase();
-        new Hunter(name);
-
-//        Location location = Location.FOREST;
-//        Location currentLocation = Location.getLocationByLevel(currentLevel);
-      new Animal(Animal.getName(), animal.getHitsRequired(), animal.getImageFile());
-    }
+//    public void load() {
+//        System.out.println("Enter your name: ");
+//        String name = scanner.nextLine().trim().toUpperCase();
+//        new Hunter(name);
+//
+////        Location location = Location.FOREST;
+////        Location currentLocation = Location.getLocationByLevel(currentLevel);
+//      new Animal(Animal.getName(), animal.getHitsRequired(), animal.getImageFile());
+//    }
 
     public void start() {
-        System.out.println("Are you a  new player? Y|N");
+        System.out.println("Are you a new player? Y|N");
         String isNewPlayer = scanner.next().trim().toUpperCase();
 
        // Location location = Location.FOREST;
         if (!isNewPlayer.equals("N")) {
             System.out.println("Enter your name: ");
             String name = scanner.next().trim().toUpperCase();
-            ranking.show();
+  //          ranking.show();
 //            System.out.println("Enter your starting level (1, 2, or 3): ");
 //            startingLevel = getUserInput(scanner, 1, 3);
 //
 //            System.out.println("Enter your starting round (1, 2, or 3): ");
 //            startingRound = getUserInput(scanner, 1, 3);
         } else {
-            load();
+            //load();
             System.out.println("Happy Hunting!");
         }
         playRound();
@@ -152,9 +152,9 @@ public class Application {
 
     public void playRound() {
         //9 rounds, 3 per location
-        while (!location.isComplete()) {
-            location.nextAnimal();
-            location.nextWord();
+        while (!Location.isComplete()) {
+            Location.nextAnimal();
+            Location.nextWord();
         }
     }
 
