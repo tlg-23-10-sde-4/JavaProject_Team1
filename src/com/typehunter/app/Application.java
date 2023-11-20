@@ -69,7 +69,7 @@ public class Application {
 
     private void load() {
         //TODO: load word bank
-        typeHunterGame.animal.getWords();
+        //typeHunterGame.animal.getWords();
 
         //TODO: create animals
 
