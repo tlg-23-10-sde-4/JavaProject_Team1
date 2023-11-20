@@ -28,7 +28,7 @@ public enum Location {
     private static List<String> getWordBank() {
         if (wordBank == null) {
             try {
-                wordBank = Files.readAllLines(Path.of("text/wordBank.txt"));
+                wordBank = Files.readAllLines(Path.of("resourceFiles/wordBank.txt"));
                 Collections.shuffle(wordBank);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -50,13 +50,13 @@ public enum Location {
             String animalFilePath;
             switch (this) {
                 case FOREST:
-                    animalFilePath = "forest/animals.csv";
+                    animalFilePath = "forest/Forest.txt";
                     break;
                 case TUNDRA:
-                    animalFilePath = "tundra/animals.csv";
+                    animalFilePath = "tundra/Tundra.txt";
                     break;
                 case SAVANNA:
-                    animalFilePath = "savanna/animals.csv";
+                    animalFilePath = "savanna/Savanna.txt";
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + this);

@@ -10,8 +10,8 @@ public class Hunter implements Comparable<Hunter> {
 
     //Creating a Hunter with name and a HunterScore object associated with name
     public Hunter(String name) {
-        assert false;
-        this.name = scanner.next().trim().toUpperCase();
+        //assert false;
+        this.name = name;
     }
 
     public HunterScore getScore() {
