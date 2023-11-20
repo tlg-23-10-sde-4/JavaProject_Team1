@@ -87,13 +87,13 @@ public enum Location {
         if (nextLocation != null) {
             System.out.println("Congratulation! You have completed the  " + currentLocation + level());
             System.out.println("Welcome to the " + nextLocation + level());
-            setCurrentLocation(nextLocation);
+            return nextLocation;
 
         } else {
             System.out.println(" Congratulation! You have completed the " + currentLocation + level());
             System.out.println("You have completed all level! Congratulations Hunter!");
         }
-        return null;
+       return null;
     }
 
     static int level() {
@@ -117,8 +117,9 @@ public enum Location {
     }
 
     // SCOTT. added for nextLevel()
-    private void setCurrentLocation(Location nextLocation) {
-        this.currentLocation;
+    private void getCurrentLocation() {
+        currentLocation = this.currentLocation;
+
     }
 
     //ACCESSOR
@@ -133,12 +134,14 @@ public enum Location {
     public static Animal nextAnimal() {
         return animalList.remove(0);
     }
+    public int animalsRemaining() {
+        return animalList.size();
+    }
 
     public static boolean isComplete() {
-        return animalList.get(0).isDead() &&
-                animalList.get(1).isDead() &&
-                animalList.get(2).isDead();
+      return animalList.isEmpty();
     }
+
 
     public static Location getLocationByLevel(int level) {
         for (Location location : Location.values()) {
