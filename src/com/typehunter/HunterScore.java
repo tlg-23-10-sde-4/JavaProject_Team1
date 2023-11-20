@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 
-//TODO: Create a method that increments count of errors based off prompts to retry
+
 public class HunterScore implements  Serializable {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
