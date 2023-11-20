@@ -158,6 +158,15 @@ public class Application {
         }
     }
 
+    //SCOTT: if a level is complete. Go to next level and pull words. playRound()
+    public void nextLevel() {
+        if (location.isComplete()) {
+            location.getLevel();
+
+        }
+
+    }
+
     public void save() {
         //call on the method from Hunterscore
         ranking.addScore(player.getName(), player.getScore());
