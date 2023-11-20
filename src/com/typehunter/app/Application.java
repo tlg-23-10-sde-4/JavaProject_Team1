@@ -21,6 +21,8 @@ public class Application {
     private Hunter player;
     private LeaderBoard ranking;
     private HunterScore finalScore;
+    private String correctWord;
+    private String nextCorrectWord;
     Scanner scanner = new Scanner(System.in);
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
@@ -37,16 +39,12 @@ public class Application {
 
     //methods
     public void execute() {
-        do {
             welcome();
             rule();
 //            load();
             start();
             game();
 //            save();
-        }
-        while (playAgain());
-        exit();
     }
 
     public void welcome() {
@@ -130,23 +128,48 @@ public class Application {
     }
 
     public void game() {
-        String theCorrectWord = Location.nextWord();
-        System.out.print("Type the word: " + theCorrectWord);  // Display the word to the user
-        String userInput = scanner.nextLine().trim();
         Location.initializeAnimal();
-        while (!userInput.equals(theCorrectWord)) {
-            if (userInput.equalsIgnoreCase(theCorrectWord)) {
-                System.out.println("Correct! You hit the target.");
-                animal.hit();
-                playRound();
+        String theCorrectWord = Location.nextWord();
+        //System.out.println("Type the word: " + theCorrectWord);  // Display the word to the user
+        System.out.println("ABOVE IF ");
+        boolean validInput = false;
 
-            } else {
-                System.out.println("Incorrect! Try again.");
-//                player.getScore().incrementErrors();
-               System.out.print("Type the word: " + theCorrectWord);
-                userInput = scanner.nextLine().trim();
-            }
+        while (!validInput) {
+            //player.getScore().incrementErrors();
+            System.out.print("Type the word: " + theCorrectWord);
+            String userInput = scanner.nextLine().trim();
+
+        if (userInput.matches(theCorrectWord)) {
+            validInput = true;
+           // animal.hit();
+            System.out.println("IN IF");
+            System.out.println("Correct! You hit the target.");
+          Location.nextWord();
+
+          validInput = false;
+
+
+
         }
+        }
+
+
+
+//        while (!userInput.equals(theCorrectWord)) {
+//
+//            if (userInput.equalsIgnoreCase(theCorrectWord)) {
+//                System.out.println("IN IF");
+//                System.out.println("Correct! You hit the target.");
+//                animal.hit();
+//                Location.nextWord();
+//            } else {
+//                System.out.println("IN ELSE");
+//                System.out.println("\nIncorrect! Try again.");
+//                System.out.print("Type the word: " + theCorrectWord);
+//                 userInput = scanner.nextLine().trim();
+//                //player.getScore().incrementErrors();
+//            }
+
     }
 
     public void playRound() {
