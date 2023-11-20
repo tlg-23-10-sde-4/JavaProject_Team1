@@ -5,21 +5,27 @@ import com.apps.util.Prompter;
 import com.typehunter.Animal;
 import com.typehunter.Hunter;
 import com.typehunter.HunterScore;
+import com.typehunter.LeaderBoard;
+
 import javax.swing.*;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
 //TODO reference to a single prompted
 
 public class Application {
     //private
-//    Application typeHunterGame = new Application();
-    private Animal animal;  //may or may not be necessary
+    private Animal animal;
     private int currentLevel;
     private Location location;
     private Hunter player;
-
+    private LeaderBoard ranking;
+    private HunterScore finalscore;
+    Scanner scanner = new Scanner(System.in);
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
+    //fields
+    //put in a file. make local variable
     String rules = " How to play:\n" +
             "            - To be a master Type Hunter, the player must complete all three levels.\n" +
             "            - Each level contains 3 rounds with a progressing difficulty.\n" +
@@ -31,16 +37,19 @@ public class Application {
 
     //methods
     public void execute() {
-        welcome();
-        rule();
-        load();
-        start();
-        game();
-        save();
+        do {
+            welcome();
+            rule();
+            load();
+            start();
+            game();
+            save();
+        }
+        while (playAgain());
         exit();
     }
 
-    private void welcome() {
+    public void welcome() {
         System.out.println("=============================================");
         System.out.println();
         System.out.println("            T Y P E - H U N T E R            ");
@@ -48,64 +57,57 @@ public class Application {
         System.out.println("=============================================");
         //TO DO: insert hunter type image below
         ImageIcon typeHunter = new ImageIcon("images/hunter.png");
+//        JOptionPane.showMessageDialog(null, "", "Welcome to Type Hunter", JOptionPane.INFORMATION_MESSAGE, typeHunter);
+//        Console.clear();
         System.out.println(typeHunter);
         Console.clear();
     }
 
-    private void rule() {
+    public void rule() {
         System.out.println("=============================================");
         System.out.println("      R U L E S   O F   T H E   G A M E      ");
         System.out.println("=============================================");
         System.out.println(rules);
         Prompter begin = new Prompter(new Scanner(System.in));
-        String input = begin.prompt("P= play, E=exit, ", "\\d+", "Invalid Entry. P= play, E=exit");
+        System.out.println("P= play, E=exit");
+        String input = scanner.nextLine().trim();
 
-        if(input.equals("P|p".toUpperCase())){
-            load();
-            start();
-        }
-        else {
+        if (input.equals("P|p".toUpperCase())) {
+           execute();
+        } else {
+            System.out.println("invalid entry 1");
             exit();
         }
     }
 
-    private void load() {
-        //TODO: load word bank
-        //typeHunterGame.animal.getWords();
+    public void load() {
+        new Hunter(player.getName());
+        System.out.println("Enter your name: ");
 
-        //TODO: create animals
-
-
-        //TODO: place animal in "location"
         Location currentLocation = Location.getLocationByLevel(currentLevel);
-        if(currentLocation != null) {
-            currentLocation.initializeAnimal(currentLevel);
-        }
-        else {
-            System.out.println(" Invalid level: " + currentLevel);
-        }
+        currentLocation.initializeAnimal();
     }
 
-    private void start() {
-        Scanner scanner = new Scanner(System.in);
+    public void start() {
         System.out.println("Are you a  new player? Y|N");
         String isNewPlayer = scanner.next().trim().toUpperCase();
 
-        int startingLevel = 1;
-        int startingRound = 1;
+        Location location = Location.FOREST;
+        playRound();
 
-        if(!isNewPlayer.equals("N")) {
-            System.out.println("Enter your starting level (1, 2, or 3): ");
-            startingLevel = getUserInput(scanner,1,3);
-
-            System.out.println("Enter your starting round (1, 2, or 3): ");
-            startingRound = getUserInput(scanner,1,3);
-        }
-        else {
+        if (!isNewPlayer.equals("N")) {
+            System.out.println("Enter your name: ");
+            String name = scanner.next().trim().toUpperCase();
+            ranking.show();
+//            System.out.println("Enter your starting level (1, 2, or 3): ");
+//            startingLevel = getUserInput(scanner, 1, 3);
+//
+//            System.out.println("Enter your starting round (1, 2, or 3): ");
+//            startingRound = getUserInput(scanner, 1, 3);
+        } else {
+            load();
             System.out.println("Happy Hunting!");
-           // if(!isNewPlayer.equals("Y")) {
-           //     startingLevel = 1;
-           //     startingRound = 1;
+
         }
     }
 
@@ -113,53 +115,66 @@ public class Application {
         int input = -1;
         boolean validInput = false;
 
-        while(!validInput){
-            if(scanner.hasNextInt()) {
-                input =scanner.nextInt();
+        while (!validInput) {
+            if (scanner.hasNextInt()) {
+                input = scanner.nextInt();
                 if (input >= min && input <= max) {
                     validInput = true;
                 }
-            }
-            else if(validInput) {
-                System.out.println("Invalid input. Please enter a number between " + min+
+            } else {
+                System.out.println("Invalid input. Please enter a number between " + min +
                         " and " + max + ".");
-                }
-        else  {
-            System.out.println("Invalid input. Please enter a valid number." );
-            scanner.next();
+                scanner.next();
             }
         }
         return input;
     }
 
-    //  Scott: get correct words and increment errors
-    private void game() {
-        String theCorrectWord = "rabbit";
-        String userInput = "rabbit";
-        if (userInput.equals(theCorrectWord)) {
-            animal.hit();
+    public void game() {
+        String theCorrectWord = location.nextWord();
+        System.out.print("Type the word: " + theCorrectWord);  // Display the word to the user
+        String userInput = scanner.nextLine().trim();
 
-        } else {
-            player.getScore().incrementErrors();
+        while (!userInput.equals(theCorrectWord)) {
+            if (userInput.equalsIgnoreCase(theCorrectWord)) {
+                System.out.println("Correct! You hit the target.");
+                animal.hit();
+                playRound();
+
+            } else {
+                System.out.println("Incorrect! Try again.");
+                player.getScore().incrementErrors();
+                System.out.print("Type the word: " + theCorrectWord);
+                userInput = scanner.nextLine().trim();
+            }
         }
     }
-    public void playRound(){
-        //9 rounds, 3 per location
 
+    public void playRound() {
+        //9 rounds, 3 per location
+        while (!location.isComplete()) {
+            location.nextAnimal();
+            location.nextWord();
+        }
     }
 
-    private void save() {
+    public void save() {
         //call on the method from Hunterscore
+        ranking.addScore(player.getName(), player.getScore());
+        ranking.save();
+        ranking.show();
+    }
+
+    private boolean playAgain() {
+        System.out.print("Do you want to play again? (Y/N): ");
+        String input = scanner.next().trim().toUpperCase();
+        return input.equals("Y");
     }
 
     private void exit() {
-        // prompter
-        Console.clear();
+        System.out.println("Exiting Type-Hunter. Good-Bye!!");
+        scanner.close();
+        System.exit(0);
     }
-
-
-    //accessors
-
-
-    //toString
 }
+

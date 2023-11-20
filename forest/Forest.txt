@@ -1,0 +1,3 @@
+Frog,1,forest/frog.txt
+Deer,2,forest/deer.txt
+Moose,3,forest/moose.txt
