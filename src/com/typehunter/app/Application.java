@@ -15,8 +15,7 @@ import java.util.Scanner;
 
 public class Application {
     public static int location;
-    //public Location location = Location.FOREST;
-    //private
+    public static Location currentLocation;
     private Animal animal;
     private int currentLevel;
     private Hunter player;
@@ -99,15 +98,15 @@ public class Application {
         if (!isNewPlayer.equals("N")) { // SCOTT: IF() for existing players  ELSE new player
             System.out.println("Enter your name: ");
             String name = scanner.next().trim().toUpperCase();
+
             // pull existing Hunter data
             // enter level you wish to start
 
         } else {
-
-            // Start at first level location FOREST
-          currentLocation = Location.FOREST;
+            Hunter player = new Hunter(isNewPlayer); // creates new Hunter with name as input from isNewPlayer
             System.out.println("Happy Hunting!");
         }
+        currentLocation = Location.FOREST;   // Start at first level location FOREST
         playRound();
     }
 
@@ -144,7 +143,7 @@ public class Application {
             } else {
                 System.out.println("Incorrect! Try again.");
 //                player.getScore().incrementErrors();
-                System.out.print("Type the word: " + theCorrectWord);
+               System.out.print("Type the word: " + theCorrectWord);
                 userInput = scanner.nextLine().trim();
             }
         }
@@ -154,18 +153,15 @@ public class Application {
 //        Location.nextAnimal();
 //        Location.nextWord();
         //9 rounds, 3 per location
-        while (!Location.isComplete()) {
+        //SCOTT: Changed to if to try and fix errors in isComplete()
+        if (!Location.isComplete()) {
             Location.nextAnimal();
             Location.nextWord();
+        } else {
+            currentLocation.getNextLevel(); //SCOTT: Calling next round if Location.isComplete() is true
         }
     }
 
-    //SCOTT: if a level is complete. Go to next level and pull words. playRound()
-    public void nextLevel() {
-        if (Location.isComplete()) {
-            Location.level();
-        }
-    }
 
     public void save() {
         //call on the method from Hunterscore
