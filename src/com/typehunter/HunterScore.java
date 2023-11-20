@@ -12,7 +12,6 @@ public class HunterScore implements  Serializable {
     private int errors = 0;
     private long elapsedTime = 0L;
 
-
     public HunterScore() {
 
     }
