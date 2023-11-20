@@ -44,7 +44,7 @@ public class Application {
 //            load();
             start();
             game();
-            save();
+//            save();
         }
         while (playAgain());
         exit();
@@ -134,7 +134,7 @@ public class Application {
         String theCorrectWord = Location.nextWord();
         System.out.print("Type the word: " + theCorrectWord);  // Display the word to the user
         String userInput = scanner.nextLine().trim();
-
+        Location.initializeAnimal();
         while (!userInput.equals(theCorrectWord)) {
             if (userInput.equalsIgnoreCase(theCorrectWord)) {
                 System.out.println("Correct! You hit the target.");
@@ -151,21 +151,19 @@ public class Application {
     }
 
     public void playRound() {
-        Location.initializeAnimal();
-        Location.nextAnimal();
-        Location.nextWord();
+//        Location.nextAnimal();
+//        Location.nextWord();
         //9 rounds, 3 per location
-//        while (!Location.isComplete()) {
-//            Location.nextAnimal();
-//            Location.nextWord();
- //       }
+        while (!Location.isComplete()) {
+            Location.nextAnimal();
+            Location.nextWord();
+        }
     }
 
     //SCOTT: if a level is complete. Go to next level and pull words. playRound()
     public void nextLevel() {
         if (Location.isComplete()) {
             Location.level();
-
         }
     }
 
