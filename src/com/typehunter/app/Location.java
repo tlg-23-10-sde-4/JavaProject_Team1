@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.typehunter.app.WordBank.allWords;
+
 /*
  * The game has different locations that is associated with the overall
  */
@@ -18,14 +20,16 @@ public enum Location {
     TUNDRA(2, 12),
     SAVANNA(3, 24);
 
+    private static int level;
     //FIELDS
-    private final int level;
+    //private final int level;
     private Location currentLocation;
     private static final List<String> wordsByLevel = null;
     private static final List<Animal> animalList = new ArrayList<>();
 
     //Static
     private static List<String> wordBank;
+
     private final int wordCount;
 
     private static List<String> getWordBank() {
@@ -42,28 +46,28 @@ public enum Location {
 
     //CTORS
     Location(int level, int wordCount) {
-        this.level = level;
+        //this.level = level;
         this.wordCount = wordCount;
         //wordsByLevel = getWordBank().subList(0, wordCount);
-        initializeAnimal();
+        //initializeAnimal();
     }
 
-    public void initializeAnimal() {
+    public static void initializeAnimal() {
         //should create 3 instances of an Animal object
         try {
             String animalFilePath;
-            switch (this) {
+            switch (getLocationByLevel(Application.location)) {
                 case FOREST:
-                    animalFilePath = "forest/forest.txt";
+                    animalFilePath = "resourceFiles/forest.txt";
                     break;
                 case TUNDRA:
-                    animalFilePath = "tundra/tundra.txt";
+                    animalFilePath = "resourcesFiles/tundra.txt";
                     break;
                 case SAVANNA:
-                    animalFilePath = "savanna/savanna.txt";
+                    animalFilePath = "resourceFiles/savanna.txt";
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + this);
+                    throw new IllegalStateException("Unexpected value: " + getLocationByLevel(Application.location));
             }
 
             for (int i = 0; i < 3; i++) {
@@ -81,15 +85,19 @@ public enum Location {
         Location nextLocation = currentLocation.nextLevel();
 
         if (nextLocation != null) {
-            System.out.println("Congratulation! You have completed the  " + currentLocation + getLevel() );
-            System.out.println("Welcome to the " + nextLocation + getLevel());
+            System.out.println("Congratulation! You have completed the  " + currentLocation + level());
+            System.out.println("Welcome to the " + nextLocation + level());
             setCurrentLocation(nextLocation);
 
         } else {
-            System.out.println(" Congratulation! You have completed the " + currentLocation + getLevel());
+            System.out.println(" Congratulation! You have completed the " + currentLocation + level());
             System.out.println("You have completed all level! Congratulations Hunter!");
         }
         return null;
+    }
+
+    static int level() {
+        return level;
     }
 
 
@@ -113,12 +121,8 @@ public enum Location {
     }
 
     //ACCESSOR
-    public int getLevel() {
-        return level;
-    }
-
     public static String nextWord() {
-        return wordsByLevel.remove(0);
+        return allWords.remove(0);
     }
 
     public int getWordCount() {
@@ -137,7 +141,7 @@ public enum Location {
 
     public static Location getLocationByLevel(int level) {
         for (Location location : Location.values()) {
-            if (location.getLevel() == level) {
+            if (location.level() == level) {
                 return location;
             }
         }

@@ -14,10 +14,11 @@ import java.util.Scanner;
 //TODO reference to a single prompted
 
 public class Application {
+    public static int location;
+    //public Location location = Location.FOREST;
     //private
     private Animal animal;
     private int currentLevel;
-    private Location location;
     private Hunter player;
     private LeaderBoard ranking;
     private HunterScore finalScore;
@@ -94,7 +95,6 @@ public class Application {
         System.out.println("Are you a new player? Y|N");
         String isNewPlayer = scanner.next().trim().toUpperCase();
 
-       // Location location = Location.FOREST;
         if (!isNewPlayer.equals("N")) {
             System.out.println("Enter your name: ");
             String name = scanner.next().trim().toUpperCase();
@@ -131,7 +131,7 @@ public class Application {
     }
 
     public void game() {
-        String theCorrectWord = location.nextWord();
+        String theCorrectWord = Location.nextWord();
         System.out.print("Type the word: " + theCorrectWord);  // Display the word to the user
         String userInput = scanner.nextLine().trim();
 
@@ -143,7 +143,7 @@ public class Application {
 
             } else {
                 System.out.println("Incorrect! Try again.");
-                player.getScore().incrementErrors();
+//                player.getScore().incrementErrors();
                 System.out.print("Type the word: " + theCorrectWord);
                 userInput = scanner.nextLine().trim();
             }
@@ -151,20 +151,22 @@ public class Application {
     }
 
     public void playRound() {
+        Location.initializeAnimal();
+        Location.nextAnimal();
+        Location.nextWord();
         //9 rounds, 3 per location
-        while (!Location.isComplete()) {
-            Location.nextAnimal();
-            Location.nextWord();
-        }
+//        while (!Location.isComplete()) {
+//            Location.nextAnimal();
+//            Location.nextWord();
+ //       }
     }
 
     //SCOTT: if a level is complete. Go to next level and pull words. playRound()
     public void nextLevel() {
-        if (location.isComplete()) {
-            location.getLevel();
+        if (Location.isComplete()) {
+            Location.level();
 
         }
-
     }
 
     public void save() {
