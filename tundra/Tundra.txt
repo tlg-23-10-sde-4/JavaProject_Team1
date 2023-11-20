@@ -1,0 +1,3 @@
+Rabbit,2,tundra/rabbit.txt
+Wolf,4,tundra/wolf.txt
+Bear,6,tundra/bear.txt

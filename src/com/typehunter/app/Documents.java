@@ -1,15 +1,27 @@
 package com.typehunter.app;
 
+import com.apps.util.Console;
+
+import javax.swing.*;
+
 class Documents {
-    //Into Statement
+    public static void main(String[] args) {
 
 
-    /*
-            How to play:
-            - To be a master Type Hunter, the player must complete all three levels.
-            - Each level contains 3 rounds with a progressing difficulty.
-            - To successfully complete a round, the player must correctly type the words as they appear on the screen.
-            - Each incorrectly typed attempts impacts the player's "shooting" accuracy.
+        Documents doc = new Documents();
+        doc.welcome();
 
-     */
+    }
+
+    private void welcome() {
+        System.out.println("=============================================");
+        System.out.println();
+        System.out.println("            T Y P E - H U N T E R            ");
+        System.out.println();
+        System.out.println("=============================================");
+        //TO DO: insert hunter type image below
+        ImageIcon typeHunter = new ImageIcon("images/ascii-art.txt");
+        System.out.println(typeHunter);
+        Console.clear();
+    }
 }

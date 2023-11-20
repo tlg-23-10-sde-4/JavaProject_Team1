@@ -6,10 +6,12 @@ import java.util.*;
 public class Hunter implements Comparable<Hunter> {
     private  String name;
     private HunterScore score = new HunterScore();
+    private Scanner scanner;
 
     //Creating a Hunter with name and a HunterScore object associated with name
-    private Hunter(String name) {
-       this.name = name;
+    public Hunter(String name) {
+        assert false;
+        this.name = scanner.next().trim().toUpperCase();
     }
 
     public HunterScore getScore() {

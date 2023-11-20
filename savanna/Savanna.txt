@@ -1,0 +1,3 @@
+Zebra,4,savanna/zebra.txt
+Elephant,8, savanna/elephant.txt
+Rhinoceros,12,savanna/rhino.txt
