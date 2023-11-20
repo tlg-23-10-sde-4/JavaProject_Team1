@@ -37,7 +37,6 @@ public class Animal {
         }
     }
 
-
     public static List<Animal> createAnimalFromFile() {
         List<Animal> animals = new ArrayList<>();
         try {

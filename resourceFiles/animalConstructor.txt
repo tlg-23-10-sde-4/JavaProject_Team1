@@ -1,0 +1,9 @@
+duck,1,resources/images/duck.txt
+deer,2,resources/images/deer.txt
+moose,3,resources/images/moose.txt
+seal,2,resources/images/seal.txt
+fox,4,resources/images/fox.txt
+polarBear,6,resources/images/polarBear.txt
+giraffe,4,resources/images/giraffe.txt
+hippopotamus,8,resources/images/hippopotamus.txt
+lion,12resources/images/lion.txt

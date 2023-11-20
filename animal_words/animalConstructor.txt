@@ -1,9 +1,0 @@
-Duck,1,duck.txt,duck.wav
-Deer,2,file\path\image,file\path\sound
-Moose,3,file\path\image,file\path\sound
-Artic_Hare,2,file\path\image,file\path\sound
-Artic_Fox,4,file\path\image,file\path\sound
-Polar_Bear,6,file\path\image,file\path\sound
-Giraffe,4,file\path\image,file\path\sound
-Hippopotamus,8,file\path\image,file\path\sound
-Lion,12,file\path\image,file\path\sound

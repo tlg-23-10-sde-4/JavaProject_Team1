@@ -22,7 +22,7 @@ authority
 avail
 avid
 awry
-Balmy
+balmy
 banter
 barter
 benign
@@ -30,7 +30,7 @@ bizarre
 blase
 bonanza
 bountiful
-Cache
+cache
 capacious
 caption
 chastise
@@ -51,7 +51,7 @@ convey
 crucial
 crusade
 culminate
-Deceptive
+deceptive
 decipher
 decree
 deface
@@ -71,7 +71,7 @@ disposition
 doctrine
 dub
 durable
-Eccentric
+eccentric
 elite
 embargo
 embark
@@ -88,7 +88,7 @@ excerpt
 excruciating
 exemplify
 exotic
-Facilitate
+facilitate
 fallacy
 fastidious
 feasible
@@ -113,8 +113,7 @@ heritage
 hindrance
 hover
 humane
-
-Imperative
+imperative
 inaugurate
 incense
 indifferent
@@ -126,17 +125,14 @@ intricate
 inventive
 inventory
 irascible
-
-Jurisdiction
-
-Languish
+jurisdiction
+languish
 legendary
 liberal
 loll
 lucrative
 luminous
-
-Memoir
+memoir
 mercenary
 mien
 millennium
@@ -148,8 +144,7 @@ Onslaught
 ornate
 ovation
 overt
-
-Pang
+pang
 panorama
 perspective
 phenomenon
@@ -166,8 +161,7 @@ proficient
 profound
 pseudonym
 pungent
-
-Rankle
+rankle
 rational
 rebuke
 reception
@@ -178,8 +172,7 @@ renown
 revenue
 rubble
 rue
-
-Sage
+sage
 sedative
 serene
 servile
@@ -198,8 +191,7 @@ succumb
 surpass
 susceptible
 swelter
-
-Tedious
+tedious
 teem
 theme
 tirade
@@ -208,14 +200,11 @@ transition
 trepidation
 turbulent
 tycoon
-
-Ultimate
+ultimate
 ungainly
-
-Vice versa
+vice versa
 vie
 vilify
 voracious
-
-Wage
+wage
 wrangle
