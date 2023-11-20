@@ -20,6 +20,7 @@ public enum Location {
 
     //FIELDS
     private final int level;
+    private Location currentLocation;
     private static final List<String> wordsByLevel = null;
     private static final List<Animal> animalList = new ArrayList<>();
 
@@ -74,6 +75,41 @@ public enum Location {
         } catch (IllegalStateException | NumberFormatException | IOException e) {
             e.printStackTrace();
         }
+    }
+    // SCOTT: Printing next level for user
+    public Location nextLevel() {
+        Location nextLocation = currentLocation.nextLevel();
+
+        if (nextLocation != null) {
+            System.out.println("Congratulation! You have completed the  " + currentLocation + getLevel() );
+            System.out.println("Welcome to the " + nextLocation + getLevel());
+            setCurrentLocation(nextLocation);
+
+        } else {
+            System.out.println(" Congratulation! You have completed the " + currentLocation + getLevel());
+            System.out.println("You have completed all level! Congratulations Hunter!");
+        }
+        return null;
+    }
+
+
+    // SCOTT: Trying to create a nextLevel step sequence
+    public Location getNextLevel() {
+        switch (this) {
+            case FOREST:
+                return TUNDRA;
+            case TUNDRA:
+                return SAVANNA;
+            case SAVANNA:
+                return null;
+            default:
+                throw new IllegalStateException("getNextLevel error");
+
+        }
+    }
+
+    // SCOTT. added for nextLevel()
+    private void setCurrentLocation(Location nextLocation) {
     }
 
     //ACCESSOR
