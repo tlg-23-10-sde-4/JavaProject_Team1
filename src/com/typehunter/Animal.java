@@ -13,6 +13,11 @@ public class Animal {
     private static String name;
     private static int hitsRequired;
     private String image;
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
     private String imageFile;
     private int hitsTaken = 0;
     private boolean isDead;

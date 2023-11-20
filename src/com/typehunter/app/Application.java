@@ -72,8 +72,8 @@ public class Application {
         System.out.println("P= play, E=exit");
         String input = scanner.nextLine().trim();
 
-        if (input.equals("P|p".toUpperCase())) {
-           execute();
+        if (input.matches("P|p")) {
+            System.out.println("L O A D I N G . . . .");
         } else {
             System.out.println("invalid entry 1");
             exit();
@@ -81,20 +81,20 @@ public class Application {
     }
 
     public void load() {
-        new Hunter(player.getName());
         System.out.println("Enter your name: ");
+        String name = scanner.nextLine().trim().toUpperCase();
+        new Hunter(name);
 
-        Location currentLocation = Location.getLocationByLevel(currentLevel);
-        currentLocation.initializeAnimal();
+//        Location location = Location.FOREST;
+//        Location currentLocation = Location.getLocationByLevel(currentLevel);
+      new Animal(Animal.getName(), animal.getHitsRequired(), animal.getImageFile());
     }
 
     public void start() {
         System.out.println("Are you a  new player? Y|N");
         String isNewPlayer = scanner.next().trim().toUpperCase();
 
-        Location location = Location.FOREST;
-        playRound();
-
+       // Location location = Location.FOREST;
         if (!isNewPlayer.equals("N")) {
             System.out.println("Enter your name: ");
             String name = scanner.next().trim().toUpperCase();
@@ -107,8 +107,8 @@ public class Application {
         } else {
             load();
             System.out.println("Happy Hunting!");
-
         }
+        playRound();
     }
 
     private int getUserInput(Scanner scanner, int min, int max) {
