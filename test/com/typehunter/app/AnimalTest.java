@@ -2,20 +2,21 @@ package com.typehunter.app;
 
 import com.typehunter.Animal;
 import org.junit.Test;
+
+import java.nio.file.NoSuchFileException;
 import static org.junit.Assert.*;
 
 public class AnimalTest {
 
-//    @Test
-//    public void hit_shouldIncrementNumberOfHits_shouldDieAfterHitsRequiredEqualsHitsTaken() {
-//        Animal deer = new Animal("Deer", 3);
-//        //assertFalse(deer.isDead());
-//        deer.hit();
-//        deer.hit();
-//        assertFalse(deer.isDead());
-//        deer.hit();
-//        assertTrue(deer.isDead());
-//
-//
-//    }
+    @Test
+    public void animalCtor_shouldCreateNewInstanceOfAnimal_whenAnimalNameWordsAndArtAreCorrect() {
+        Animal deer = new Animal("deer", 2, Location.FOREST);
+        assertEquals(deer, deer);
+
+        Animal wolf = new Animal("wolf", 4, Location.TUNDRA);
+        assertEquals(wolf, wolf);
+
+        Animal elephant = new Animal("elephant", 8, Location.SAVANNA);
+        assertEquals(elephant, elephant);
+    }
 }

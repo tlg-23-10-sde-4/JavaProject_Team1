@@ -14,7 +14,6 @@ public class LeaderBoard implements Serializable {
         this.hunters = hunters;
     }
 
-
     //Creates instance of LeaderBoard if there isnt one already. If there is then reads from file.
     public LeaderBoard getInstance() {
         LeaderBoard board = null;
@@ -37,11 +36,11 @@ public class LeaderBoard implements Serializable {
 
     /*SCOTT NOTE:
 =======
-   private  LeaderBoard() {
+   private LeaderBoard() {
 
     }
 
-    /*SCOTTT NOTE:
+    /*SCOTT NOTE:
 
      *I think it i decided not to use the treeMap named scoreMap
      * Hunter has a score and errors so  i think those might be included when
