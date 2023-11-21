@@ -1,0 +1,5 @@
+" How to play:\n" +
+            "            - To be a master Type Hunter, the player must complete all three levels.\n" +
+            "            - Each level contains 3 rounds with a progressing difficulty.\n" +
+            "            - To successfully complete a round, the player must correctly type the words as they appear on the screen.\n" +
+            "            - Each incorrectly typed attempts impacts the player's \"shooting\" accuracy.";
