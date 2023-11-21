@@ -5,20 +5,16 @@ import com.apps.util.Prompter;
 import com.typehunter.*;
 
 import javax.swing.*;
-import java.io.IOException;
-import java.util.Locale;
 import java.util.Scanner;
 //TODO reference to a single prompted
 
 public class Application {
     private Hunter player;
-    private LeaderBoard ranking;
     private String correctWord;
+    private LeaderBoard board;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
-    LeaderBoard bigBoard = new LeaderBoard();
-
     Scanner scanner = new Scanner(System.in);
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
@@ -41,7 +37,6 @@ public class Application {
             // Creates Game for the purposing of calling run() in game
         Game game = new Game();
         game.run();
-
            save();
            show();
            exit();
@@ -131,11 +126,11 @@ public class Application {
 
 
     public void save() {
-        bigBoard.save();
+        board.save();
     }
 
     public void show() {
-        bigBoard.show();
+        board.show();
     }
 
     private boolean playAgain() {
