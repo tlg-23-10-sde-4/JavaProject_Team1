@@ -31,7 +31,7 @@ public class LeaderBoard implements Serializable {
         return board;
     }
 
-    public LeaderBoard() {
+   private  LeaderBoard() {
 
     }
 
