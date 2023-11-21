@@ -2,10 +2,7 @@ package com.typehunter.app;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
-import com.typehunter.Animal;
-import com.typehunter.Hunter;
-import com.typehunter.HunterScore;
-import com.typehunter.LeaderBoard;
+import com.typehunter.*;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -16,11 +13,12 @@ import java.util.Scanner;
 public class Application {
     private Hunter player;
     private LeaderBoard ranking;
-    private HunterScore finalScore;
     private String correctWord;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
+
+
     Scanner scanner = new Scanner(System.in);
 
     //fields -- don't hardcode; files.readString -- only displayed if user chooses; local variable
@@ -37,12 +35,15 @@ public class Application {
 
     //methods
     public void execute() {
-            welcome();
-            rule();
-//            load();
-            start();
-            game();
-//            save();
+        welcome();
+        rule();
+        playerProfile();
+        // Creates Game for the purposing of calling run() in game
+        Game game = new Game();
+        game.run();
+        save();
+        show();
+
     }
 
     public void welcome() {
@@ -65,38 +66,47 @@ public class Application {
         System.out.println("=============================================");
         System.out.println(rules);
         Prompter begin = new Prompter(new Scanner(System.in));
-        System.out.println("P=play, E=exit");
-        String input = scanner.nextLine().trim();
+        System.out.println("P = Play, E = Exit");
+        String input = scanner.nextLine().trim().toUpperCase();
 
-        if (input.matches("P|p")) {
+        if (input.matches("p")) {
             System.out.println("L O A D I N G . . . .");
-        } else {
-            System.out.println("invalid entry 1");
+
+        } else if (input.matches("e")) {
+
+            System.out.println("Exiting");
             exit();
+
+        } else {
+            System.out.println("Please choose P to Play! Or E to Exit :( ");
         }
     }
 
-   public void load() {
 
-   }
-
-
+    //SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
         System.out.println("Please enter your name!");
-        String input = scanner.next().trim().toUpperCase();
+        String input = scanner.next().trim().toUpperCase(); // Save the input name to use for name for Hunter()
+
         System.out.println("Are you a new player? Y|N");
         String newPlayer = scanner.next().trim().toUpperCase();
-        if (newPlayer.matches("Y")) {
-        player = new Hunter(input);
 
-        } if (newPlayer.matches("N")) {
-            // if not new player grab existing Hunter player from LeaderBoard
+        // if new player add the Hunter  to our List<Hunter> file
+        if (newPlayer.matches("Y|y")) {
+            player = new Hunter(input); // i think this might come back has name being Y but its input from top scanner idk
+
+        } else if (newPlayer.matches("N|n")) {
+
+            /*
+             *Match input name to names in List<Hunter>
+             */
+            //
+        } else {
+            System.out.println("Please enter Y for New Player or N for Existing Player");
         }
 
     }
-    public void start() {
 
-    }
 
     private int getUserInput(Scanner scanner, int min, int max) {
         int input = -1;
@@ -117,20 +127,12 @@ public class Application {
         return input;
     }
 
-    public void game() {
-
-    }
-
-
-    public void playRound() {
-
-  }
-
 
     public void save() {
-        //call on the method from Hunterscore
-        ranking.addScore(player.getName(), player.getScore());
         ranking.save();
+    }
+
+    public void show() {
         ranking.show();
     }
 
@@ -146,4 +148,3 @@ public class Application {
         System.exit(0);
     }
 }
-

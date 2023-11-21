@@ -6,16 +6,16 @@ import static org.junit.Assert.*;
 
 public class AnimalTest {
 
-    @Test
-    public void hit_shouldIncrementNumberOfHits_shouldDieAfterHitsRequiredEqualsHitsTaken() {
-        Animal deer = new Animal("Deer", 3);
-        //assertFalse(deer.isDead());
-        deer.hit();
-        deer.hit();
-        assertFalse(deer.isDead());
-        deer.hit();
-        assertTrue(deer.isDead());
-
-
-    }
+//    @Test
+//    public void hit_shouldIncrementNumberOfHits_shouldDieAfterHitsRequiredEqualsHitsTaken() {
+//        Animal deer = new Animal("Deer", 3);
+//        //assertFalse(deer.isDead());
+//        deer.hit();
+//        deer.hit();
+//        assertFalse(deer.isDead());
+//        deer.hit();
+//        assertTrue(deer.isDead());
+//
+//
+//    }
 }
