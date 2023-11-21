@@ -69,7 +69,6 @@ public class Application {
         // displays rules
         displayAsciiArtFromFile(rules);
 
-
         //Prompter begin = new Prompter(new Scanner(System.in));
         System.out.println("P = Play, E = Exit");
         String input = scanner.nextLine().trim();
@@ -86,7 +85,6 @@ public class Application {
             System.out.println("Please choose P to Play! Or E to Exit :( ");
         }
     }
-
 
     //SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
@@ -145,7 +143,6 @@ public class Application {
         }
         return input;
     }
-
 
     public void save() {
         bigBoard.save();

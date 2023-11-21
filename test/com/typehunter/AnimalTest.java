@@ -1,6 +1,7 @@
-package com.typehunter.app;
+package com.typehunter;
 
 import com.typehunter.Animal;
+import com.typehunter.app.Location;
 import org.junit.Test;
 
 import java.nio.file.NoSuchFileException;
