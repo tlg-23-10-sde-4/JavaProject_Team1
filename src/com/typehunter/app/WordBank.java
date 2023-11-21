@@ -13,8 +13,18 @@ public class WordBank {
     private static final List<String> words = loadWordsFromFile();
 
     public static String getRandomWord() {
-        return words.get(new Random().nextInt(words.size()));
+      //  return words.get(new Random().nextInt(words.size()));
+        if (words.isEmpty()) {
+            // Handle the case when the list is empty
+            return null;
+        }
+        // Get a random index
+        int randomIndex = new Random().nextInt(words.size());
+
+        // Return the selected word
+        return words.remove(randomIndex);
     }
+
 
     public static ArrayList<String> getRandomWords(int amount) {
         ArrayList<String> result = new ArrayList<String>();
@@ -28,7 +38,7 @@ public class WordBank {
         try (BufferedReader reader = new BufferedReader(new FileReader("resourceFiles/wordBank.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                words.add(line.trim());
+                words.add(line.trim().toLowerCase());
             }
         } catch (IOException e) {
             e.printStackTrace();
