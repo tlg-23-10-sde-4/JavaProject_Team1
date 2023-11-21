@@ -18,7 +18,7 @@ public enum Location {
             case FOREST:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Frog", 1, location),
                         new Animal("Deer", 2, location),
-                        new Animal("Moose", 3,location)));
+                        new Animal("Moose", 3, location)));
 
             case TUNDRA:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 3, location),

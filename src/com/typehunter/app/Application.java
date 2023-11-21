@@ -21,20 +21,20 @@ public class Application {
     private Location currentLocation = null;
     LeaderBoard bigBoard = new LeaderBoard();
     Scanner scanner = new Scanner(System.in);
-    String rules ="resourceFiles/images/rules.txt";
+    String rules = "resourceFiles/images/rules.txt";
 
     //methods
     public void execute() {
-            welcome();
-            rule();
-            playerProfile();
-            // Creates Game for the purposing of calling run() in game
+        welcome();
+        rule();
+        playerProfile();
+        // Creates Game for the purposing of calling run() in game
         Game game = new Game();
         game.run();
 
-           save();
-           show();
-           exit();
+        save();
+        show();
+        exit();
 
     }
 
@@ -48,6 +48,7 @@ public class Application {
         displayAsciiArtFromFile("resourceFiles/images/hunter.txt");
         Console.clear();
     }
+
     private void displayAsciiArtFromFile(String filePath) {
         try {
             Path asciiArtPath = Path.of(filePath);
@@ -57,6 +58,7 @@ public class Application {
             System.out.println("Error reading ASCII art from file: " + e.getMessage());
         }
     }
+
     public void rule() {
 
         /// need to delete this banner
@@ -86,7 +88,7 @@ public class Application {
     }
 
 
-//SCOTT NOTE: i commented in here because i cant get to the result i want
+    //SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
         String input;
         String newPlayer;
@@ -103,7 +105,7 @@ public class Application {
             }
         }
 
-            boolean validInput = false;
+        boolean validInput = false;
         do {
             System.out.println("Are you a new player? Y|N");
             newPlayer = scanner.next().trim();
