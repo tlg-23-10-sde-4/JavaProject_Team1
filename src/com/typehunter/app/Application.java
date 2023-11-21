@@ -17,7 +17,7 @@ public class Application {
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
-
+    LeaderBoard bigBoard = new LeaderBoard();
 
     Scanner scanner = new Scanner(System.in);
 
@@ -35,14 +35,16 @@ public class Application {
 
     //methods
     public void execute() {
-        welcome();
-        rule();
-        playerProfile();
-        // Creates Game for the purposing of calling run() in game
+            welcome();
+            rule();
+            playerProfile();
+            // Creates Game for the purposing of calling run() in game
         Game game = new Game();
         game.run();
-        save();
-        show();
+
+           save();
+           show();
+           exit();
 
     }
 
@@ -67,12 +69,12 @@ public class Application {
         System.out.println(rules);
         Prompter begin = new Prompter(new Scanner(System.in));
         System.out.println("P = Play, E = Exit");
-        String input = scanner.nextLine().trim().toUpperCase();
+        String input = scanner.nextLine().trim();
 
-        if (input.matches("p")) {
+        if (input.matches("p|P")) {
             System.out.println("L O A D I N G . . . .");
 
-        } else if (input.matches("e")) {
+        } else if (input.matches("e|E")) {
 
             System.out.println("Exiting");
             exit();
@@ -83,17 +85,17 @@ public class Application {
     }
 
 
-    //SCOTT NOTE: i commented in here because i cant get to the result i want
+//SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
         System.out.println("Please enter your name!");
-        String input = scanner.next().trim().toUpperCase(); // Save the input name to use for name for Hunter()
+        String input = scanner.next().trim(); // Save the input name to use for name for Hunter()
 
         System.out.println("Are you a new player? Y|N");
-        String newPlayer = scanner.next().trim().toUpperCase();
+        String newPlayer = scanner.next().trim();
 
         // if new player add the Hunter  to our List<Hunter> file
         if (newPlayer.matches("Y|y")) {
-            player = new Hunter(input); // i think this might come back has name being Y but its input from top scanner idk
+        player = new Hunter(input); // i think this might come back has name being Y but its input from top scanner idk
 
         } else if (newPlayer.matches("N|n")) {
 
@@ -129,11 +131,11 @@ public class Application {
 
 
     public void save() {
-        ranking.save();
+        bigBoard.save();
     }
 
     public void show() {
-        ranking.show();
+        bigBoard.show();
     }
 
     private boolean playAgain() {
@@ -148,3 +150,4 @@ public class Application {
         System.exit(0);
     }
 }
+
