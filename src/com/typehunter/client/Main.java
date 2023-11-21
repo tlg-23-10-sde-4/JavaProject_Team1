@@ -2,12 +2,16 @@ package com.typehunter.client;
 
 
 
+import com.typehunter.Game;
 import com.typehunter.Hunter;
 import com.typehunter.app.Application;
+public class Main {
 
-class Main {
     public static void main(String[] args) {
-     Application game = new Application();
-     game.execute();
+
+        Game game = new Game();
+        game.run();
+
     }
 }
+
