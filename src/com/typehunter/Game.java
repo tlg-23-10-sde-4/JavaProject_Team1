@@ -1,20 +1,28 @@
 package com.typehunter;
+
+import com.apps.util.Console;
 import com.typehunter.app.Location;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
 
     private Hunter player;
-    private ArrayList<Animal> animalPool = new ArrayList<>();
+    private List<Animal> animalPool = new ArrayList<>();
     private Location currentLocation = Location.FOREST;
     private String currentWord;
+    private int errors = 0;
+    private long elapsedTime = 0L;
 
     public void run() {
         initVars();
 
-        while(currentLocation != null) {
+        //  starts timer for Hunter. This will run for the duration of the method (entire game)
+        player.startTimer();
+
+        while (currentLocation != null) {
 
             if (animalPool.size() == 0) {
                 currentLocation = getNextLocation();
@@ -25,7 +33,7 @@ public class Game {
 
             Animal a = animalPool.remove(0);
 
-            while(a != null && a.words.size() > 0) {
+            while (a != null && a.words.size() > 0) {
                 currentWord = a.words.get(0);
                 if (getInput(a.name)) {
                     a.words.remove(0);
@@ -35,19 +43,19 @@ public class Game {
             }
 
         }
-
+        player.endTimer();
         System.out.println("Thanks for playing! -- the end!");
     }
 
     private boolean getInput(String animalName) {
-        System.out.println("[" + animalName + "]: Type in: " + currentWord);
+        System.out.println("[" + animalName + "]: Type: " + currentWord);
         Scanner s = new Scanner(System.in);
-        if (s.nextLine().toLowerCase().equals(currentWord))
+        if (s.nextLine().toLowerCase().equals(currentWord)) {
             return true;
 
-        // todo: player. errors ++;
-
-
+        } else {
+            player.incrementErrors();
+        }
         return false;
     }
 
@@ -79,5 +87,4 @@ public class Game {
         player = new Hunter("Scott");
         createAnimalPool();
     }
-
 }

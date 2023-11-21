@@ -8,7 +8,6 @@ import java.util.*;
 public class LeaderBoard implements Serializable {
     private String name;
     private static final String dataFilePath = "leaderboard/leaderboard.dat";
-    private final Map<String, HunterScore> scoreMap = new TreeMap<>();
     private List<Hunter> hunters;
 
     public LeaderBoard(List<Hunter> hunters) {
@@ -16,44 +15,44 @@ public class LeaderBoard implements Serializable {
     }
 
 
-
     //Creates instance of LeaderBoard if there isnt one already. If there is then reads from file.
-    public static LeaderBoard getInstance() {
+    public LeaderBoard getInstance() {
         LeaderBoard board = null;
         if (Files.exists(Path.of(dataFilePath))) {
             try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(dataFilePath))) {
                 board = (LeaderBoard) in.readObject();
 
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             board = new LeaderBoard();
         }
         return board;
     }
 
-    private LeaderBoard() {
+    public LeaderBoard() {
 
     }
-    public void addScore(String name, HunterScore score) {
-        scoreMap.put(name, score);
-    }
+
+    /*SCOTTT NOTE:
+     *I think it i decided not to use the treeMap named scoreMap
+     * Hunter has a score and errors so  i think those might be included when
+     * Leaderboard(List<Hunter> hunters) is constructed above.
+     */
+
 
     public void save() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
             out.writeObject(this);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
         }
     }
 
-//    public void show() {
-//        hunters.sort(null);
-//        for (Hunter hunter : hunters) {
-//            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getScore().getElapsedTime() + " Errors:" + hunter.getScore().getErrors());
-//        }
-//    }
+    public void show() {
+        hunters.sort(null);
+        for (Hunter hunter : hunters) {
+            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getElapsedTime() + " Errors:" + hunter.getErrors());
+        }
+    }
 }
