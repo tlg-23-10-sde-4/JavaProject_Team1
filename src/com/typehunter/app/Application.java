@@ -76,23 +76,10 @@ public class Application {
         }
     }
 
-//    public void load() {
-//        System.out.println("Enter your name: ");
-//        String name = scanner.nextLine().trim().toUpperCase();
-//        new Hunter(name);
-//
-////        Location location = Location.FOREST;
-////        Location currentLocation = Location.getLocationByLevel(currentLevel);
-//      new Animal(Animal.getName(), animal.getHitsRequired(), animal.getImageFile());
-//    }
+   public void load() {
 
-    /*
-     *SCOTT: Added this method to reduce profile creation stuff in start(). More smaller better functioning
-     *   intention is to:  1. prompt for name/  2. If name is found pull Hunter from List<Hunter>
-     * 3. if name is not found create a new instance of Hunter with userinput as Hunter(String name)
-     *
-     *
-     */
+   }
+
 
     public void playerProfile() {
         System.out.println("Please enter your name!");
@@ -109,19 +96,6 @@ public class Application {
     }
     public void start() {
 
-//        if (!isNewPlayer.equals("N")) { // SCOTT: IF() for existing players  ELSE new player
-//            System.out.println("Enter your name: ");
-//            String name = scanner.next().trim().toUpperCase();
-//
-//
-//            // enter level you wish to start
-//
-//        } else {
-//            Hunter player = new Hunter(isNewPlayer); // creates new Hunter with name as input from isNewPlayer
-//            System.out.println("Happy Hunting!");
-//        }
-//        currentLocation = Location.FOREST;   // Start at first level location FOREST
-//        playRound();
     }
 
     private int getUserInput(Scanner scanner, int min, int max) {
@@ -145,112 +119,11 @@ public class Application {
 
     public void game() {
 
-
-        while (true) {
-            // Creates animalList
-            currentLocation = Location.getNextLevel(currentLocation);
-            if (currentLocation == null) {
-                break;
-            }
-            Location.initializeAnimal(currentLocation);
-            currentAnimal = Location.nextAnimal();
-
-
-            while (currentAnimal != null) {
-                //grab new word
-                String theCorrectWord = Location.nextWord();
-                currentAnimal = Location.nextAnimal();
-
-                while (currentAnimal != null && currentAnimal.isAlive()) {
-
-
-                    //Prompt for typing word
-                    System.out.print("[" + currentAnimal.getName() + "]: "  + "Type the word: " + theCorrectWord);
-                    String userInput = scanner.nextLine().trim();
-                    if (userInput.equals(theCorrectWord)) {
-                        currentAnimal.hit();
-                        System.out.println("Correct! You hit the target.");
-                        theCorrectWord = Location.nextWord();
-                    } else {
-                        // Handle the case when the input is incorrect
-                        System.out.println("Incorrect! Try again.");
-                        // player.getScore().incrementErrors();
-                    }
-                }
-            }
-        }
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//        while (validInput == false) {
-//            String theCorrectWord = Location.nextWord();
-//            // Display the word to the user
-//            System.out.print("Type the word: " + theCorrectWord);
-//            String userInput = scanner.nextLine().trim();
-//
-//            if (userInput.equals(theCorrectWord)) {
-//                validInput = true;
-//                // Assuming you want to do something with the animal here
-//                Animal currentAnimal = Location.nextAnimal();
-//                currentAnimal.hit();
-//                System.out.println("Correct! You hit the target.");
-//
-//                // Reset validInput for the next iteration
-//                validInput = false;
-//            } else {
-//                // Handle the case when the input is incorrect
-//                System.out.println("Incorrect! Try again.");
-//                // Increment errors or perform other actions if needed
-//                // player.getScore().incrementErrors();
-//            }
-//        }
-//    }
-
-
-//        while (!userInput.equals(theCorrectWord)) {
-//
-//            if (userInput.equalsIgnoreCase(theCorrectWord)) {
-//                System.out.println("IN IF");
-//                System.out.println("Correct! You hit the target.");
-//                animal.hit();
-//                Location.nextWord();
-//            } else {
-//                System.out.println("IN ELSE");
-//                System.out.println("\nIncorrect! Try again.");
-//                System.out.print("Type the word: " + theCorrectWord);
-//                 userInput = scanner.nextLine().trim();
-//                //player.getScore().incrementErrors();
-//            }
-
-
-
     public void playRound() {
-////        Location.nextAnimal();
-////        Location.nextWord();
-//        //9 rounds, 3 per location
-//        //SCOTT: Changed to if to try and fix errors in isComplete()
-//        if (!Location.isComplete()) {
-//            Location.nextAnimal();
-//            Location.nextWord();
-//        } else {
-//           // currentLocation.getNextLevel(); //SCOTT: Calling next round if Location.isComplete() is true
-//        }
+
   }
 
 

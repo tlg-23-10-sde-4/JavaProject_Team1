@@ -16,13 +16,13 @@ public enum Location {
         switch(location) {
 
             case FOREST:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Frog", 1), new Animal("Deer", 2), new Animal("Bear", 3)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Frog", 1), new Animal("Deer", 2), new Animal("Moose", 3)));
 
             case TUNDRA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Oakd", 2), new Animal("DASD", 3), new Animal("Abtgh", 2)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 3), new Animal("Wolf", 4), new Animal("Bear", 8)));
 
             case SAVANNA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("asdasd",2), new Animal("hhhh", 2), new Animal("fgrgrg", 2)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra",4), new Animal("Elephant", 8), new Animal("Rhinoceros", 12)));
 
         }
 
