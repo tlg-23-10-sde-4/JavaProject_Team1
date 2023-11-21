@@ -21,7 +21,7 @@ public class Game {
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
         player.startTimer();
-
+  
         while (currentLocation != null) {
 
             if (animalPool.size() == 0) {
