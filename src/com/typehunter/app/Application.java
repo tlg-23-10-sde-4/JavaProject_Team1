@@ -5,23 +5,17 @@ import com.apps.util.Prompter;
 import com.typehunter.*;
 
 import javax.swing.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
-
-
 import java.util.Scanner;
 //TODO reference to a single prompted
 
 public class Application {
     private Hunter player;
-
     private LeaderBoard ranking;
-
     private String correctWord;
-    private LeaderBoard board;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
@@ -70,15 +64,11 @@ public class Application {
         System.out.println("      R U L E S   O F   T H E   G A M E      ");
         System.out.println("=============================================");
 
-
         // displays rules
         displayAsciiArtFromFile(rules);
 
 
         //Prompter begin = new Prompter(new Scanner(System.in));
-        System.out.println(rules);
-        Prompter begin = new Prompter(new Scanner(System.in));
-
         System.out.println("P = Play, E = Exit");
         String input = scanner.nextLine().trim();
 
@@ -98,7 +88,6 @@ public class Application {
 
 //SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
-
         String input;
         String newPlayer;
 
@@ -135,30 +124,6 @@ public class Application {
         } while (!validInput);
     }
 
-        System.out.println("Please enter your name!");
-        String input = scanner.next().trim(); // Save the input name to use for name for Hunter()
-
-        System.out.println("Are you a new player? Y|N");
-        String newPlayer = scanner.next().trim();
-
-        // if new player add the Hunter  to our List<Hunter> file
-        if (newPlayer.matches("Y|y")) {
-        player = new Hunter(input); // i think this might come back has name being Y but its input from top scanner idk
-
-        } else if (newPlayer.matches("N|n")) {
-
-            /*
-             *Match input name to names in List<Hunter>
-             */
-            //
-        } else {
-            System.out.println("Please enter Y for New Player or N for Existing Player");
-        }
-
-    }
-
-
-
     //is this method necessary?
     private int getUserInput(Scanner scanner, int min, int max) {
         int input = -1;
@@ -181,19 +146,11 @@ public class Application {
 
 
     public void save() {
-
         bigBoard.save();
     }
 
     public void show() {
         bigBoard.show();
-
-        board.save();
-    }
-
-    public void show() {
-        board.show();
-
     }
 
     private boolean playAgain() {
@@ -208,4 +165,3 @@ public class Application {
         System.exit(0);
     }
 }
-
