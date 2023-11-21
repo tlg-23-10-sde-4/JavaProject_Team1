@@ -28,7 +28,7 @@ public enum Location {
             case SAVANNA:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra", 4, location),
                         new Animal("Elephant", 8, location),
-                        new Animal("Rhinoceros", 12, location)));
+                        new Animal("Rhino", 12, location)));
         }
 
         return null;
