@@ -1,4 +1,5 @@
 package com.typehunter;
+
 import com.typehunter.app.WordBank;
 
 import java.util.ArrayList;

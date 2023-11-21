@@ -13,7 +13,7 @@ public enum Location {
 
 
     public static ArrayList<Animal> getAnimalsIn(Location location) {
-        switch(location) {
+        switch (location) {
 
             case FOREST:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Frog", 1), new Animal("Deer", 2), new Animal("Moose", 3)));
@@ -22,7 +22,7 @@ public enum Location {
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 3), new Animal("Wolf", 4), new Animal("Bear", 8)));
 
             case SAVANNA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra",4), new Animal("Elephant", 8), new Animal("Rhinoceros", 12)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra", 4), new Animal("Elephant", 8), new Animal("Rhinoceros", 12)));
 
         }
 
