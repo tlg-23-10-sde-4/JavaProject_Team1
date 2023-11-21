@@ -19,12 +19,16 @@ import java.util.Comparator;
 
 public class Hunter implements Comparable<Hunter>, Serializable {
     private String name;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private static LocalDateTime startTime;
+    private static LocalDateTime endTime;
     private int errors = 0;
     private long elapsedTime = 0L;
     private static final long serialVersionUID = 1L;
+    private int totalErrors = 0;
 
+    public Hunter () {
+
+}
     public Hunter(String name) {
         this.name = name;
     }
@@ -35,14 +39,17 @@ public class Hunter implements Comparable<Hunter>, Serializable {
         this.elapsedTime = getElapsedTime();
 
     }
+    public void  setName(String name) {
+        this.name = name;
 
+    }
     public String getName() {
-        return name;
+       return this.name;
 
     }
 
     //Starts timer when round starts and grabs and stores current time
-    public void startTimer() {
+    public static void startTimer() {
         startTime = LocalDateTime.now();
     }
 
@@ -56,12 +63,12 @@ public class Hunter implements Comparable<Hunter>, Serializable {
     }
 
     // SCOTT NOTE: This might be wrong. i think it might need to iterate errors then save itself
-    public void incrementErrors() {
-        errors++;
+    public  void incrementErrors() {
+         totalErrors = errors++;
     }
 
     public int getErrors() {
-        return errors;
+        return totalErrors;
 
     }
 

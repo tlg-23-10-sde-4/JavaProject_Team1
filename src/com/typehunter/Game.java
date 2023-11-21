@@ -1,6 +1,7 @@
 package com.typehunter;
 
 import com.apps.util.Console;
+import com.typehunter.app.Application;
 import com.typehunter.app.Location;
 
 import java.util.ArrayList;
@@ -16,15 +17,23 @@ public class Game {
     private LeaderBoard bigBoard = LeaderBoard.getInstance();
     private int errors = 0;
     private long elapsedTime = 0L;
+    private static int errors = 0;
+    private static long elapsedTime = 0L;
+    private String name;
+
+
+    public Game() {
+       Hunter hunter = new Hunter();
+        createAnimalPool();
+    }
 
     public Game(LeaderBoard bigBoard) {
     }
 
     public void run() {
-        initVars();
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
-        player.startTimer();
+        Hunter.startTimer();
 
         while (currentLocation != null) {
 
@@ -41,7 +50,7 @@ public class Game {
                 currentWord = a.words.get(0);
                 Console.clear();
 
-                displayAnimalandWord(a);
+                displayAnimalAndWord(a);
 
                 if (getInput()) {
                     a.words.remove(0);
@@ -57,8 +66,7 @@ public class Game {
                 + player.getElapsedTime() + ", Errors: " + player.getErrors());
     }
 
-
-    public void displayAnimalandWord(Animal displayAnimal) {
+    public void displayAnimalAndWord(Animal displayAnimal) {
         System.out.println(displayAnimal.asciiArt);
         System.out.println("[" + displayAnimal.name + "]: Type: " + currentWord);
     }
@@ -66,6 +74,7 @@ public class Game {
     private boolean getInput() {
         Scanner s = new Scanner(System.in);
         if (s.nextLine().toLowerCase().equals(currentWord)) {
+            //Console.clear();
             Console.clear();
 
             return true;
@@ -98,10 +107,5 @@ public class Game {
     private void createAnimalPool() {
         if (currentLocation != null)
             animalPool = Location.getAnimalsIn(currentLocation);
-    }
-
-    private void initVars() {
-        player = new Hunter("Scott");
-        createAnimalPool();
     }
 }

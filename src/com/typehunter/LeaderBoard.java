@@ -39,20 +39,6 @@ public class LeaderBoard implements Serializable {
 
     }
 
-    /*SCOTT NOTE:
-=======
-   private  LeaderBoard() {
-
-    }
-
-    /*SCOTTT NOTE:
-
-     *I think it i decided not to use the treeMap named scoreMap
-     * Hunter has a score and errors so  i think those might be included when
-     * Leaderboard(List<Hunter> hunters) is constructed above.
-     */
-
-
     public void save() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dataFilePath))) {
             out.writeObject(hunters);
@@ -82,18 +68,6 @@ public class LeaderBoard implements Serializable {
         }
         return null;
     }
-
-//        public Hunter findPlayer(String playerName){
-//        if(hunters != null){
-//            for (Hunter hunter : hunters) {
-//                if (hunter != null && hunter.getName().equalsIgnoreCase(playerName)) {
-//                    return hunter;
-//                }
-//            }
-//        }
-//            return null;
-//    }
-
 
 
     public void addPlayer(Hunter player) {

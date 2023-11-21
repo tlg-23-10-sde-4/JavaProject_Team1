@@ -17,18 +17,18 @@ public enum Location {
 
             case FOREST:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Frog", 1, location),
-                        new Animal("Deer", 1, location),
-                        new Animal("Moose", 1,location)));
+                        new Animal("Deer", 2, location),
+                        new Animal("Moose", 3, location)));
 
             case TUNDRA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 1, location),
-                        new Animal("Wolf", 1, location),
-                        new Animal("Bear", 1, location)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 3, location),
+                        new Animal("Wolf", 4, location),
+                        new Animal("Bear", 8, location)));
 
             case SAVANNA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra", 1, location),
-                        new Animal("Elephant", 1, location),
-                        new Animal("Rhino", 1, location)));
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra", 4, location),
+                        new Animal("Elephant", 8, location),
+                        new Animal("Rhino", 12, location)));
         }
 
         return null;

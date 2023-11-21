@@ -5,30 +5,28 @@ import com.apps.util.Prompter;
 import com.typehunter.*;
 
 import javax.swing.*;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLOutput;
 import java.util.Locale;
-
-
 import java.util.Scanner;
 //TODO reference to a single prompted
 
 public class Application {
     private Hunter player;
-
     private LeaderBoard ranking;
-
     private String correctWord;
-    private LeaderBoard board;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
-    private LeaderBoard bigBoard;
-    Scanner scanner = new Scanner(System.in);
+    private LeaderBoard bigBoard = new LeaderBoard();
+    private Scanner scanner = new Scanner(System.in);
+    private String rules = "resourceFiles/images/rules.txt";
+    private String welcomeBanner = "resourceFiles/images/welcomebanner.txt";
+    private String hunterArt = "resourceFiles/images/hunter.txt";
+    public String nameInput;
 
-    String rules ="resourceFiles/images/rules.txt";
 
     //methods
     public void execute() {
@@ -39,23 +37,22 @@ public class Application {
             // Creates Game for the purposing of calling run() in game
         Game game = new Game(bigBoard);
         game.run();
-
-           save();
-           show();
-           exit();
+        save();
+        show();
+        playAgain();
+        exit();
 
     }
 
     public void welcome() {
-        System.out.println("=============================================");
-        System.out.println();
-        System.out.println("            T Y P E - H U N T E R            ");
-        System.out.println();
-        System.out.println("=============================================");
+        displayAsciiArtFromFile(welcomeBanner);
+        displayAsciiArtFromFile(hunterArt);
+        System.out.println("Enter any key to continue!");
+        String input = scanner.nextLine();
 
-        displayAsciiArtFromFile("resourceFiles/images/hunter.txt");
         Console.clear();
     }
+
     private void displayAsciiArtFromFile(String filePath) {
         try {
             Path asciiArtPath = Path.of(filePath);
@@ -65,17 +62,10 @@ public class Application {
             System.out.println("Error reading ASCII art from file: " + e.getMessage());
         }
     }
+
     public void rule() {
-
-        /// need to delete this banner
-        System.out.println("=============================================");
-        System.out.println("      R U L E S   O F   T H E   G A M E      ");
-        System.out.println("=============================================");
-
-
         // displays rules
         displayAsciiArtFromFile(rules);
-
 
         //Prompter begin = new Prompter(new Scanner(System.in));
         System.out.println(rules);
@@ -97,28 +87,45 @@ public class Application {
     }
 
 
-//SCOTT NOTE: i commented in here because i cant get to the result i want
+    //SCOTT NOTE: i commented in here because i cant get to the result i want
     public void playerProfile() {
-
-        String input;
-        String newPlayer;
+        String newPlayerName;
 
         while (true) {
             System.out.println("Please enter your name!");
-            input = scanner.next().trim();
+            nameInput = scanner.next().trim();
 
             // Validate name
-            if (!input.isEmpty()) {
+            if (!nameInput.isEmpty()) {
                 break; // Exit the loop if a valid name is provided
             } else {
                 System.out.println("Invalid name. Please enter your name.");
             }
         }
+
+        boolean validInput = false;
+        do {
+            System.out.println("Are you a new player? Y|N");
+            newPlayerName = scanner.next().trim();
         System.out.println("Are you a new player? Y|N");
         newPlayer = scanner.next().trim();
         LeaderBoard bigBoard = LeaderBoard.getInstance();
         Hunter player = bigBoard.findPlayer(input);
 
+            // if new player, add the Hunter to our List<Hunter> file
+            if (newPlayerName.matches("Y|y")) {
+                player = new Hunter(nameInput);
+                validInput = true;
+            } else if (newPlayerName.matches("N|n")) {
+                /*
+                 * Match input name to names in List<Hunter>
+                 */
+                // Add your logic for existing players
+                validInput = true;
+            } else {
+                System.out.println("Please enter Y for New Player or N for Existing Player");
+            }
+        } while (!validInput);
         if (player != null) {
             // Player found, use the existing player profile
             System.out.println("Existing player profile loaded: " + player.getName());
@@ -130,71 +137,28 @@ public class Application {
         }
     }
 
-        System.out.println("Please enter your name!");
-        String input = scanner.next().trim(); // Save the input name to use for name for Hunter()
-
-        System.out.println("Are you a new player? Y|N");
-        String newPlayer = scanner.next().trim();
-
-        // if new player add the Hunter  to our List<Hunter> file
-        if (newPlayer.matches("Y|y")) {
-        player = new Hunter(input); // i think this might come back has name being Y but its input from top scanner idk
-
-        } else if (newPlayer.matches("N|n")) {
-
-            /*
-             *Match input name to names in List<Hunter>
-             */
-            //
-        } else {
-            System.out.println("Please enter Y for New Player or N for Existing Player");
-        }
-
-
-
-
-
-    //is this method necessary?
-    private int getUserInput(Scanner scanner, int min, int max) {
-        int input = -1;
-        boolean validInput = false;
-
-        while (!validInput) {
-            if (scanner.hasNextInt()) {
-                input = scanner.nextInt();
-                if (input >= min && input <= max) {
-                    validInput = true;
-                }
-            } else {
-                System.out.println("Invalid input. Please enter a number between " + min +
-                        " and " + max + ".");
-                scanner.next();
-            }
-        }
-        return input;
-    }
-
-
     public void save() {
-
         bigBoard.save();
     }
 
     public void show() {
         bigBoard.show();
-
-        board.save();
     }
 
-    public void show() {
-        board.show();
-
-    }
-
-    private boolean playAgain() {
+    private void playAgain() {
         System.out.print("Do you want to play again? (Y/N): ");
         String input = scanner.next().trim().toUpperCase();
-        return input.equals("Y");
+        if (input.matches("Y|y")) {
+            Game game = new Game();
+            game.run();
+
+        } else if (input.matches("N|n")) {
+            exit();
+        } else {
+            System.out.println("Please enter Y to Play again or N to Exit");
+            String inputs = scanner.nextLine().trim().toUpperCase();
+
+        }
     }
 
     private void exit() {
@@ -203,4 +167,3 @@ public class Application {
         System.exit(0);
     }
 }
-

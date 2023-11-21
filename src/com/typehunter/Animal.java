@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Animal {
 
-    public String asciiArt;
     public String name;
     public ArrayList<String> words;
+    public String asciiArt;
 
     public Animal(String name, int amountOfWords, Location location) {
         this.name = name;
@@ -27,7 +27,6 @@ public class Animal {
         return "resourceFiles/" + locationName + "/" + fileName;
     }
 
-
     private String readAsciiArtFromFile(String fileName) {
         try {
             return new String(Files.readAllBytes(Paths.get(fileName)));
@@ -37,4 +36,3 @@ public class Animal {
         }
     }
 }
-
