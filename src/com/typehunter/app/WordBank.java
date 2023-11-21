@@ -1,5 +1,8 @@
 package com.typehunter.app;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
