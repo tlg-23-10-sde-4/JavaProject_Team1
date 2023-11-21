@@ -1,31 +1,36 @@
 package com.typehunter.app;
 
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-class WordBank {
-    /*private*/ static List<String> allWords;
+public class WordBank {
+    private static final List<String> words= loadWordsFromFile();
 
-    public static List<String> getWords() {
+    public static String getRandomWord() {
+        return words.get(new Random().nextInt(words.size()));
+    }
+
+    public static ArrayList<String> getRandomWords(int amount) {
+        ArrayList<String> result = new ArrayList<String>();
+        for(int i = 0; i < amount; ++i)
+            result.add(getRandomWord());
+        return result;
+    }
+    private static List<String> loadWordsFromFile() {
         List<String> words = new ArrayList<>();
-
-        for (int i = 0; i < getWords().size(); i++) {
-            words.add(allWords.remove(0));
+        try (BufferedReader reader = new BufferedReader(new FileReader("text/wordBank.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                words.add(line.trim());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        Collections.shuffle(words);
         return words;
     }
 
-    static {
-        try {
-            allWords = Files.readAllLines(Path.of("resourceFiles/wordBank.txt"));
-            Collections.shuffle(allWords);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
