@@ -1,3 +1,0 @@
-zebra,4,resourceFiles/images/zebra.txt
-elephant,8,resourceFiles/images/elephant.txt
-rhinoceros,12,resourceFiles/images/rhino.txt

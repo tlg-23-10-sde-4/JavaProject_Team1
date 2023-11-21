@@ -1,3 +1,0 @@
-frog,1,frog
-deer,2,deer
-moose,3,moose

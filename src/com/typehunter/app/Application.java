@@ -30,12 +30,12 @@ public class Application {
 
     //methods
     public void execute() {
-        welcome();
-        rule();
-        playerProfile();
-        // Creates Game for the purposing of calling run() in game
-//        Game game = new Game();
-        Game game = new Game();
+            welcome();
+            rule();
+            bigBoard = LeaderBoard.getInstance();
+            playerProfile();
+            // Creates Game for the purposing of calling run() in game
+        Game game = new Game(bigBoard);
         game.run();
         save();
         show();
@@ -68,6 +68,8 @@ public class Application {
         displayAsciiArtFromFile(rules);
 
         //Prompter begin = new Prompter(new Scanner(System.in));
+        System.out.println(rules);
+
         System.out.println("P = Play, E = Exit");
         String input = scanner.nextLine().trim();
 
@@ -105,6 +107,10 @@ public class Application {
         do {
             System.out.println("Are you a new player? Y|N");
             newPlayerName = scanner.next().trim();
+        System.out.println("Are you a new player? Y|N");
+        newPlayer = scanner.next().trim();
+        LeaderBoard bigBoard = LeaderBoard.getInstance();
+        Hunter player = bigBoard.findPlayer(input);
 
             // if new player, add the Hunter to our List<Hunter> file
             if (newPlayerName.matches("Y|y")) {
@@ -120,6 +126,15 @@ public class Application {
                 System.out.println("Please enter Y for New Player or N for Existing Player");
             }
         } while (!validInput);
+        if (player != null) {
+            // Player found, use the existing player profile
+            System.out.println("Existing player profile loaded: " + player.getName());
+        } else {
+            // Player not found, create a new player profile
+            player = new Hunter(input);
+            bigBoard.addPlayer(player); // Add the new player to the leaderboard
+            System.out.println("New player profile created: " + player.getName());
+        }
     }
 
     public void save() {
