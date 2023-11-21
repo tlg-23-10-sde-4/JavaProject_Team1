@@ -57,6 +57,7 @@ public class Game {
                 + player.getElapsedTime() + ", Errors: " + player.getErrors());
     }
 
+
     public void displayAnimalandWord(Animal displayAnimal) {
         System.out.println(displayAnimal.asciiArt);
         System.out.println("[" + displayAnimal.name + "]: Type: " + currentWord);
@@ -65,7 +66,8 @@ public class Game {
     private boolean getInput() {
         Scanner s = new Scanner(System.in);
         if (s.nextLine().toLowerCase().equals(currentWord)) {
-            //Console.clear();
+            Console.clear();
+
             return true;
 
         } else {
