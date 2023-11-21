@@ -11,16 +11,15 @@ import java.nio.file.Path;
 import java.sql.SQLOutput;
 import java.util.Locale;
 import java.util.Scanner;
-//TODO reference to a single prompted
+
 
 public class Application {
     private Hunter player;
-    private LeaderBoard ranking;
+
     private String correctWord;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
-    private LeaderBoard bigBoard = new LeaderBoard();
     private Scanner scanner = new Scanner(System.in);
     private String rules = "resourceFiles/images/rules.txt";
     private String welcomeBanner = "resourceFiles/images/welcomebanner.txt";
@@ -30,16 +29,12 @@ public class Application {
 
     //methods
     public void execute() {
-            welcome();
-            rule();
-            bigBoard = LeaderBoard.getInstance();
-            playerProfile();
-            // Creates Game for the purposing of calling run() in game
-        Game game = new Game(bigBoard);
+        welcome();
+        rule();
+       // playerProfile();
+
+        Game game = new Game();
         game.run();
-        save();
-        show();
-        playAgain();
         exit();
 
     }
@@ -66,101 +61,59 @@ public class Application {
     public void rule() {
         // displays rules
         displayAsciiArtFromFile(rules);
-
-        //Prompter begin = new Prompter(new Scanner(System.in));
-        System.out.println(rules);
-
-        System.out.println("P = Play, E = Exit");
-        String input = scanner.nextLine().trim();
-
-        if (input.matches("p|P")) {
-            System.out.println("L O A D I N G . . . .");
-
-        } else if (input.matches("e|E")) {
-
-            System.out.println("Exiting");
-            exit();
-
-        } else {
-            System.out.println("Please choose P to Play! Or E to Exit :( ");
-        }
+        System.out.println("L O A D I N G . . . .");
+        System.out.println("Game will start in 10 seconds!");
+        Console.pause(10000L);
     }
 
 
     //SCOTT NOTE: i commented in here because i cant get to the result i want
-    public void playerProfile() {
-        String newPlayerName;
-
-        while (true) {
-            System.out.println("Please enter your name!");
-            nameInput = scanner.next().trim();
-
-            // Validate name
-            if (!nameInput.isEmpty()) {
-                break; // Exit the loop if a valid name is provided
-            } else {
-                System.out.println("Invalid name. Please enter your name.");
-            }
-        }
-
-        boolean validInput = false;
-        do {
-            System.out.println("Are you a new player? Y|N");
-            newPlayerName = scanner.next().trim();
-        System.out.println("Are you a new player? Y|N");
-        newPlayer = scanner.next().trim();
-        LeaderBoard bigBoard = LeaderBoard.getInstance();
-        Hunter player = bigBoard.findPlayer(input);
-
-            // if new player, add the Hunter to our List<Hunter> file
-            if (newPlayerName.matches("Y|y")) {
-                player = new Hunter(nameInput);
-                validInput = true;
-            } else if (newPlayerName.matches("N|n")) {
-                /*
-                 * Match input name to names in List<Hunter>
-                 */
-                // Add your logic for existing players
-                validInput = true;
-            } else {
-                System.out.println("Please enter Y for New Player or N for Existing Player");
-            }
-        } while (!validInput);
-        if (player != null) {
-            // Player found, use the existing player profile
-            System.out.println("Existing player profile loaded: " + player.getName());
-        } else {
-            // Player not found, create a new player profile
-            player = new Hunter(input);
-            bigBoard.addPlayer(player); // Add the new player to the leaderboard
-            System.out.println("New player profile created: " + player.getName());
-        }
-    }
-
-    public void save() {
-        bigBoard.save();
-    }
-
-    public void show() {
-        bigBoard.show();
-    }
-
-    private void playAgain() {
-        System.out.print("Do you want to play again? (Y/N): ");
-        String input = scanner.next().trim().toUpperCase();
-        if (input.matches("Y|y")) {
-            Game game = new Game();
-            game.run();
-
-        } else if (input.matches("N|n")) {
-            exit();
-        } else {
-            System.out.println("Please enter Y to Play again or N to Exit");
-            String inputs = scanner.nextLine().trim().toUpperCase();
-
-        }
-    }
-
+//    public void playerProfile() {
+//        String newPlayerName;
+//
+//        while (true) {
+//            Console.clear();
+//            System.out.println("Please enter your name!");
+//            nameInput = scanner.next().trim();
+//
+//            // Validate name
+//            if (!nameInput.isEmpty()) {
+//                break; // Exit the loop if a valid name is provided
+//            } else {
+//                System.out.println("Invalid name. Please enter your name.");
+//            }
+//        }
+//
+//        boolean validInput = false;
+//        do {
+//            System.out.println("Are you a new player? Y|N");
+//            newPlayerName = scanner.next().trim();
+//
+//
+//            // if new player, add the Hunter to our List<Hunter> file
+//            if (newPlayerName.matches("Y|y")) {
+//                Console.clear();
+//                validInput = true;
+//            } else if (newPlayerName.matches("N|n")) {
+//                /*
+//                 * Match input name to names in List<Hunter>
+//                 */
+//                // Add your logic for existing players
+//                validInput = true;
+//            } else {
+//                System.out.println("Please enter Y for New Player or N for Existing Player");
+//            }
+//        } while (!validInput);
+//        if (player != null) {
+//            // Player found, use the existing player profile
+//            System.out.println("Existing player profile loaded: " + player.getName());
+//        } else {
+//            // Player not found, create a new player profile
+//            player = new Hunter(nameInput);
+//            System.out.println("New player profile created: " + player.getName());
+//        }
+//    }
+//
     private void exit() {
         System.out.println("Exiting Type-Hunter. Good-Bye!!");
         scanner.close();

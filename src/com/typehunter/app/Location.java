@@ -21,9 +21,9 @@ public enum Location {
                         new Animal("Moose", 3, location)));
 
             case TUNDRA:
-                return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 3, location),
+                return new ArrayList<Animal>(Arrays.asList(new Animal("Rabbit", 2, location),
                         new Animal("Wolf", 4, location),
-                        new Animal("Bear", 8, location)));
+                        new Animal("Bear", 6, location)));
 
             case SAVANNA:
                 return new ArrayList<Animal>(Arrays.asList(new Animal("Zebra", 4, location),

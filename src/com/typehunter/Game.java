@@ -10,15 +10,12 @@ import java.util.Scanner;
 
 public class Game {
 
-    private Hunter player;
+    private Hunter player = new Hunter();
     private List<Animal> animalPool = new ArrayList<>();
     private Location currentLocation = Location.FOREST;
     private String currentWord;
-    private LeaderBoard bigBoard = LeaderBoard.getInstance();
     private int errors = 0;
     private long elapsedTime = 0L;
-    private static int errors = 0;
-    private static long elapsedTime = 0L;
     private String name;
 
 
@@ -27,13 +24,13 @@ public class Game {
         createAnimalPool();
     }
 
-    public Game(LeaderBoard bigBoard) {
-    }
+
 
     public void run() {
+        this.player.setName(name);
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
-        Hunter.startTimer();
+        player.startTimer();
 
         while (currentLocation != null) {
 
@@ -60,10 +57,8 @@ public class Game {
             }
         }
         player.endTimer();
-        bigBoard.addPlayer(player);
-        bigBoard.save();
-        System.out.println("Player: " + player.getName() + ", Time: "
-                + player.getElapsedTime() + ", Errors: " + player.getErrors());
+        System.out.println("Time: "
+                + player.getElapsedTime());
     }
 
     public void displayAnimalAndWord(Animal displayAnimal) {
@@ -80,9 +75,8 @@ public class Game {
             return true;
 
         } else {
-            player.incrementErrors();
+            return false;
         }
-        return false;
     }
 
     private Location getNextLocation() {
