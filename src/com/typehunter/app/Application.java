@@ -31,12 +31,11 @@ public class Application {
     public void execute() {
         welcome();
         rule();
-       // playerProfile();
+        // playerProfile();
 
         Game game = new Game();
         game.run();
         exit();
-
     }
 
     public void welcome() {
@@ -66,8 +65,6 @@ public class Application {
         Console.pause(10000L);
     }
 
-
-    //SCOTT NOTE: i commented in here because i cant get to the result i want
 //    public void playerProfile() {
 //        String newPlayerName;
 //

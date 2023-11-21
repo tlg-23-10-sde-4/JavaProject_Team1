@@ -5,6 +5,7 @@ import com.typehunter.app.Location;
 import org.junit.Test;
 
 import java.nio.file.NoSuchFileException;
+
 import static org.junit.Assert.*;
 
 public class AnimalTest {

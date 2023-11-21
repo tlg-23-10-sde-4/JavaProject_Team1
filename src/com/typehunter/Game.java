@@ -20,11 +20,9 @@ public class Game {
 
 
     public Game() {
-       Hunter hunter = new Hunter();
+        Hunter hunter = new Hunter();
         createAnimalPool();
     }
-
-
 
     public void run() {
         this.player.setName(name);

@@ -30,7 +30,6 @@ public enum Location {
                         new Animal("Elephant", 8, location),
                         new Animal("Rhino", 12, location)));
         }
-
         return null;
     }
 }

@@ -1,3 +1,5 @@
-package PACKAGE_NAME;class Game {
+package PACKAGE_NAME;
+
+class Game {
 
 }

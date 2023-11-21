@@ -10,11 +10,14 @@ public class Hunter implements Comparable<Hunter>, Serializable {
     private String name;
     private static LocalDateTime startTime;
     private static LocalDateTime endTime;
-    private  int errors = 0;
+    private int errors = 0;
     private long elapsedTime = 0L;
-    private  final long serialVersionUID = 1L;
-    private  int totalErrors = 0;
+    private final long serialVersionUID = 1L;
+    private int totalErrors = 0;
 
+    public Hunter() {
+
+    }
 
     public Hunter(String name) {
         this.name = name;
@@ -27,44 +30,37 @@ public class Hunter implements Comparable<Hunter>, Serializable {
 
     }
 
-    public Hunter() {
-
-    }
-
-    public void  setName(String name) {
+    public void setName(String name) {
         this.name = name;
 
     }
+
     public String getName() {
-       return this.name;
+        return this.name;
 
     }
 
     //Starts timer when round starts and grabs and stores current time
-    public  void startTimer() {
+    public void startTimer() {
         startTime = LocalDateTime.now();
     }
 
-    //Ends timer when round ends and grabs and stores current time
-    // and calculates elapsedTime.
-    //SCOTT NOTE: since its a long it might be crazy long. need to look into ways to shorten it down
-    // like restricting it to a few decimal places
     public void endTimer() {
         endTime = LocalDateTime.now();
         elapsedTime = Duration.between(startTime, endTime).getSeconds();
     }
 
     // SCOTT NOTE: This might be wrong. i think it might need to iterate errors then save itself
-    public  void incrementErrors() {
-         totalErrors = errors++;
+    public void incrementErrors() {
+        totalErrors = errors++;
     }
 
-    public  int getErrors() {
+    public int getErrors() {
         return totalErrors;
 
     }
 
-    public  long getElapsedTime() {
+    public long getElapsedTime() {
         return elapsedTime;
 
     }

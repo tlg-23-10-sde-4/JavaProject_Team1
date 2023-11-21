@@ -14,10 +14,3 @@ public class Main {
         game.execute();
     }
 }
-//    public static void main(String[] args) {
-//
-//        Application app = new Application();
-//
-//        app.execute();
-//
-//    }

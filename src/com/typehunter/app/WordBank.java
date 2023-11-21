@@ -24,7 +24,7 @@ public class WordBank {
         // Return the selected word
         return words.remove(randomIndex);
     }
-    
+
     public static ArrayList<String> getRandomWords(int amount) {
         ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < amount; ++i)
