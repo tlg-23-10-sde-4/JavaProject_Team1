@@ -21,7 +21,7 @@ public class Game {
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
         player.startTimer();
-  
+
         while (currentLocation != null) {
 
             if (animalPool.size() == 0) {
@@ -50,7 +50,6 @@ public class Game {
         System.out.println("Thanks for playing! -- the end!");
     }
 
-
     public void displayAnimalandWord(Animal displayAnimal) {
         System.out.println(displayAnimal.asciiArt);
         System.out.println("[" + displayAnimal.name + "]: Type: " + currentWord);
@@ -59,13 +58,7 @@ public class Game {
     private boolean getInput() {
         Scanner s = new Scanner(System.in);
         if (s.nextLine().toLowerCase().equals(currentWord)) {
-            Console.clear();
-
-    private boolean getInput(String animalName) {
-        System.out.println("[" + animalName + "]: Type: " + currentWord);
-        Scanner s = new Scanner(System.in);
-        if (s.nextLine().toLowerCase().equals(currentWord)) {
-
+            //Console.clear();
             return true;
 
         } else {
