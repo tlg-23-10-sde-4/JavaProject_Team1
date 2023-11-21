@@ -44,7 +44,7 @@ public class Game {
                 currentWord = a.words.get(0);
                 Console.clear();
 
-                displayAnimalandWord(a);
+                displayAnimalAndWord(a);
 
                 if (getInput()) {
                     a.words.remove(0);
@@ -57,7 +57,7 @@ public class Game {
         System.out.println("Thanks for playing! -- the end!");
     }
 
-    public void displayAnimalandWord(Animal displayAnimal) {
+    public void displayAnimalAndWord(Animal displayAnimal) {
         System.out.println(displayAnimal.asciiArt);
         System.out.println("[" + displayAnimal.name + "]: Type: " + currentWord);
     }

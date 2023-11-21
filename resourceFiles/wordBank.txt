@@ -140,7 +140,7 @@ minimize
 modify
 muse
 muster
-Onslaught
+onslaught
 ornate
 ovation
 overt
