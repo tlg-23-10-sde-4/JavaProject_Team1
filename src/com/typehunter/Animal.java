@@ -1,6 +1,7 @@
 package com.typehunter;
 
 import com.typehunter.app.Location;
+
 import com.typehunter.app.WordBank;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class Animal {
         String fileName = name.toLowerCase() + ".txt";
         return "resourceFiles/" + locationName + "/" + fileName;
     }
+
 
     private String readAsciiArtFromFile(String fileName) {
         try {

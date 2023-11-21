@@ -36,6 +36,13 @@ public class LeaderBoard implements Serializable {
     }
 
     /*SCOTT NOTE:
+=======
+   private  LeaderBoard() {
+
+    }
+
+    /*SCOTTT NOTE:
+
      *I think it i decided not to use the treeMap named scoreMap
      * Hunter has a score and errors so  i think those might be included when
      * Leaderboard(List<Hunter> hunters) is constructed above.
