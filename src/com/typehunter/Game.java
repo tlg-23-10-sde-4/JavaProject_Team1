@@ -1,6 +1,7 @@
 package com.typehunter;
 
 import com.apps.util.Console;
+import com.typehunter.app.Application;
 import com.typehunter.app.Location;
 
 import java.util.ArrayList;
@@ -13,14 +14,20 @@ public class Game {
     private List<Animal> animalPool = new ArrayList<>();
     private Location currentLocation = Location.FOREST;
     private String currentWord;
-    private int errors = 0;
-    private long elapsedTime = 0L;
+    private static int errors = 0;
+    private static long elapsedTime = 0L;
+    private String name;
+
+
+    public Game() {
+       Hunter hunter = new Hunter();
+        createAnimalPool();
+    }
 
     public void run() {
-        initVars();
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
-        player.startTimer();
+        Hunter.startTimer();
 
         while (currentLocation != null) {
 
@@ -89,10 +96,5 @@ public class Game {
     private void createAnimalPool() {
         if (currentLocation != null)
             animalPool = Location.getAnimalsIn(currentLocation);
-    }
-
-    private void initVars() {
-        player = new Hunter("Scott");
-        createAnimalPool();
     }
 }
