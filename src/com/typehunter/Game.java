@@ -13,15 +13,19 @@ public class Game {
     private List<Animal> animalPool = new ArrayList<>();
     private Location currentLocation = Location.FOREST;
     private String currentWord;
+    private LeaderBoard bigBoard = LeaderBoard.getInstance();
     private int errors = 0;
     private long elapsedTime = 0L;
+
+    public Game(LeaderBoard bigBoard) {
+    }
 
     public void run() {
         initVars();
 
         //  starts timer for Hunter. This will run for the duration of the method (entire game)
         player.startTimer();
-  
+
         while (currentLocation != null) {
 
             if (animalPool.size() == 0) {
@@ -47,7 +51,10 @@ public class Game {
             }
         }
         player.endTimer();
-        System.out.println("Thanks for playing! -- the end!");
+        bigBoard.addPlayer(player);
+        bigBoard.save();
+        System.out.println("Player: " + player.getName() + ", Time: "
+                + player.getElapsedTime() + ", Errors: " + player.getErrors());
     }
 
     public void displayAnimalandWord(Animal displayAnimal) {
@@ -58,7 +65,7 @@ public class Game {
     private boolean getInput() {
         Scanner s = new Scanner(System.in);
         if (s.nextLine().toLowerCase().equals(currentWord)) {
-            Console.clear();
+            //Console.clear();
             return true;
 
         } else {

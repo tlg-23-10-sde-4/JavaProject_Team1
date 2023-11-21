@@ -14,22 +14,25 @@ import java.util.Scanner;
 
 public class Application {
     private Hunter player;
-    private LeaderBoard ranking;
+    //private LeaderBoard ranking;
     private String correctWord;
     private String nextCorrectWord;
     private Animal currentAnimal;
     private Location currentLocation = null;
-    LeaderBoard bigBoard = new LeaderBoard();
+    private LeaderBoard bigBoard;
     Scanner scanner = new Scanner(System.in);
+
     String rules ="resourceFiles/images/rules.txt";
 
     //methods
     public void execute() {
             welcome();
             rule();
+            bigBoard = LeaderBoard.getInstance();
             playerProfile();
+            //bigBoard = new LeaderBoard();
             // Creates Game for the purposing of calling run() in game
-        Game game = new Game();
+        Game game = new Game(bigBoard);
         game.run();
 
            save();
@@ -102,27 +105,46 @@ public class Application {
                 System.out.println("Invalid name. Please enter your name.");
             }
         }
+        System.out.println("Are you a new player? Y|N");
+        newPlayer = scanner.next().trim();
+        LeaderBoard bigBoard = LeaderBoard.getInstance();
+        Hunter player = bigBoard.findPlayer(input);
 
-            boolean validInput = false;
-        do {
-            System.out.println("Are you a new player? Y|N");
-            newPlayer = scanner.next().trim();
-
-            // if new player, add the Hunter to our List<Hunter> file
-            if (newPlayer.matches("Y|y")) {
-                player = new Hunter(input);
-                validInput = true;
-            } else if (newPlayer.matches("N|n")) {
-                /*
-                 * Match input name to names in List<Hunter>
-                 */
-                // Add your logic for existing players
-                validInput = true;
-            } else {
-                System.out.println("Please enter Y for New Player or N for Existing Player");
-            }
-        } while (!validInput);
+        if (player != null) {
+            // Player found, use the existing player profile
+            System.out.println("Existing player profile loaded: " + player.getName());
+        } else {
+            // Player not found, create a new player profile
+            player = new Hunter(input);
+            bigBoard.addPlayer(player); // Add the new player to the leaderboard
+            System.out.println("New player profile created: " + player.getName());
+        }
     }
+//            boolean validInput = false;
+//        do {
+//            System.out.println("Are you a new player? Y|N");
+//            newPlayer = scanner.next().trim();
+//
+//            // if new player, add the Hunter to our List<Hunter> file
+//            if (newPlayer.matches("Y|y")) {
+//                player = new Hunter(input);
+//                validInput = true;
+//            } else if (newPlayer.matches("N|n")) {
+//
+//                /*
+//                 * Match input name to names in List<Hunter>
+//                 */
+//               LeaderBoard bigBoard = LeaderBoard.getInstance();
+//               player= bigBoard.findPlayer(input);
+//
+//                // Add your logic for existing players
+//                validInput = true;
+//            } else {
+//                System.out.println("Please enter Y for New Player or N for Existing Player");
+//            }
+//        } while (!validInput);
+//        System.out.println(player.getName() + ": Profile updated!");
+//    }
 
     //is this method necessary?
     private int getUserInput(Scanner scanner, int min, int max) {

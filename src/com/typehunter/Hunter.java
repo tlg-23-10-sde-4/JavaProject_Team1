@@ -1,5 +1,6 @@
 package com.typehunter;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -16,13 +17,13 @@ import java.util.Comparator;
  */
 
 
-public class Hunter implements Comparable<Hunter> {
+public class Hunter implements Comparable<Hunter>, Serializable {
     private String name;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private int errors = 0;
     private long elapsedTime = 0L;
-
+    private static final long serialVersionUID = 1L;
 
     public Hunter(String name) {
         this.name = name;

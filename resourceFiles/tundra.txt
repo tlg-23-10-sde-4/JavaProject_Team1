@@ -1,3 +1,0 @@
-rabbit,2,resourceFiles/images/rabbit.txt
-wolf,4,resourceFiles/images/wolf.txt
-bear,6,resourceFiles/images/bear.txt
