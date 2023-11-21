@@ -50,10 +50,10 @@ public class LeaderBoard implements Serializable {
         }
     }
 
-    public void show() {
-        hunters.sort(null);
-        for (Hunter hunter : hunters) {
-            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getScore().getElapsedTime() + " Errors:" + hunter.getScore().getErrors());
-        }
-    }
+//    public void show() {
+//        hunters.sort(null);
+//        for (Hunter hunter : hunters) {
+//            System.out.println("Name:" + hunter.getName() + " Time:" + hunter.getScore().getElapsedTime() + " Errors:" + hunter.getScore().getErrors());
+//        }
+//    }
 }
