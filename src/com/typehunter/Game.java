@@ -35,22 +35,30 @@ public class Game {
 
             while (a != null && a.words.size() > 0) {
                 currentWord = a.words.get(0);
-                if (getInput(a.name)) {
+                Console.clear();
+
+                displayAnimalandWord(a);
+
+                if (getInput()) {
                     a.words.remove(0);
                     if (a.words.size() == 0)
                         break;
                 }
             }
-
         }
         player.endTimer();
         System.out.println("Thanks for playing! -- the end!");
     }
 
-    private boolean getInput(String animalName) {
-        System.out.println("[" + animalName + "]: Type: " + currentWord);
+    public void displayAnimalandWord(Animal displayAnimal) {
+        System.out.println(displayAnimal.asciiArt);
+        System.out.println("[" + displayAnimal.name + "]: Type: " + currentWord);
+    }
+
+    private boolean getInput() {
         Scanner s = new Scanner(System.in);
         if (s.nextLine().toLowerCase().equals(currentWord)) {
+            Console.clear();
             return true;
 
         } else {
