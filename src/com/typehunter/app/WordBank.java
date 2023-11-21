@@ -13,7 +13,7 @@ public class WordBank {
     private static final List<String> words = loadWordsFromFile();
 
     public static String getRandomWord() {
-      //  return words.get(new Random().nextInt(words.size()));
+        //  return words.get(new Random().nextInt(words.size()));
         if (words.isEmpty()) {
             // Handle the case when the list is empty
             return null;
@@ -24,8 +24,7 @@ public class WordBank {
         // Return the selected word
         return words.remove(randomIndex);
     }
-
-
+    
     public static ArrayList<String> getRandomWords(int amount) {
         ArrayList<String> result = new ArrayList<String>();
         for (int i = 0; i < amount; ++i)
